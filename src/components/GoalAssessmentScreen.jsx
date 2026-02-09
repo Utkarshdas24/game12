@@ -140,17 +140,12 @@ const GoalAssessmentScreen = ({
                         animate={{ opacity: 1 }}
                         className="ghibli-content justify-between sm:justify-center py-2 sm:py-6"
                     >
-                        {/* Header Area - Clean and efficient */}
-                        <div className="w-full shrink-0 mb-2 sm:mb-4">
-                            <header className="flex items-center justify-between mb-2">
-                                <div className="flex flex-col">
-                                    <span className="text-blue-200 text-[10px] sm:text-xs font-bold uppercase tracking-widest">
-                                        GOAL {currentGoalIndex + 1}/3
-                                    </span>
-                                    <h2 className="text-white text-base sm:text-lg md:text-xl font-black drop-shadow-md">
-                                        {currentGoal.name}
-                                    </h2>
-                                </div>
+                        {/* Header Area - Top bar with GOAL and Timer */}
+                        <div className="w-full shrink-0 mb-3 sm:mb-4">
+                            <header className="flex items-center justify-between mb-3">
+                                <span className="text-blue-200 text-[10px] sm:text-xs font-bold uppercase tracking-widest">
+                                    GOAL {currentGoalIndex + 1}/3
+                                </span>
                                 <div className="relative w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center">
                                     <svg className="absolute w-full h-full -rotate-90 scale-110">
                                         <circle cx="50%" cy="50%" r="45%" stroke="rgba(255,255,255,0.2)" strokeWidth="3" fill="transparent" />
@@ -176,48 +171,58 @@ const GoalAssessmentScreen = ({
                                     transition={{ duration: 0.5 }}
                                 />
                             </div>
+
+                            {/* Goal Title - Centered, Large, Dominant */}
+                            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-extrabold drop-shadow-md text-center mt-3 uppercase">
+                                {currentGoal.name}
+                            </h2>
                         </div>
 
-                        {/* Main Questions Container - Centered and Compact */}
-                        <div className="flex-1 flex flex-col items-center justify-center gap-3 sm:gap-6 max-w-lg mx-auto w-full min-h-0">
+                        {/* Main Questions Container - Compact layout to fit single screen */}
+                        <div className="flex-1 flex flex-col items-center gap-2 sm:gap-3 w-full min-h-0 pt-1">
 
-                            {/* Image - Optimized size for PC */}
-                            <div className="relative w-full aspect-square max-h-[160px] sm:max-h-[240px] md:max-h-[260px] flex items-center justify-center overflow-hidden">
-                                <AnimatePresence mode='wait'>
-                                    <motion.video
-                                        key={currentGoal.id}
-                                        src={goalVideos[currentGoal.id]}
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.9 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="max-h-full max-w-full object-contain z-20"
-                                        style={{
-                                            clipPath: 'inset(0 10% 0 15%)',
-                                            WebkitClipPath: 'inset(0 10% 0 15%)'
-                                        }}
-                                    />
-                                </AnimatePresence>
+                            {/* Animation/Video - 3-layer containment to prevent clipping */}
+                            {/* Layer 1: Safe Zone - NO overflow-hidden */}
+                            <div className="w-full flex justify-center items-center">
+                                {/* Layer 2: Frame - Size controller - Balanced size */}
+                                <div className="relative w-[360px] h-[360px] sm:w-[400px] sm:h-[400px] md:w-[440px] md:h-[440px] flex items-center justify-center">
+                                    {/* Layer 3: Animation - Constrained, NO absolute positioning */}
+                                    <AnimatePresence mode='wait'>
+                                        <motion.video
+                                            key={currentGoal.id}
+                                            src={goalVideos[currentGoal.id]}
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0.9 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="max-w-full max-h-full object-contain"
+                                            style={{
+                                                clipPath: 'inset(0 10% 0 15%)',
+                                                WebkitClipPath: 'inset(0 10% 0 15%)'
+                                            }}
+                                        />
+                                    </AnimatePresence>
+                                </div>
                             </div>
 
-                            {/* Question Card - Premium glass look */}
+                            {/* Question Card - Minimal margins, maximum width */}
                             <motion.div
                                 key={`${currentGoal.id}-${currentQuestionIndex}`}
                                 initial={{ opacity: 0, y: 15 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="w-full bg-white/95 backdrop-blur-sm p-4 sm:p-6 shadow-2xl border-4 border-white/50 text-center"
+                                className="w-full mx-0.5 sm:mx-1 md:mx-2 bg-white/95 backdrop-blur-sm p-4 sm:p-6 shadow-2xl border-4 border-white/50 text-center"
                             >
                                 <h3 className="text-slate-800 text-sm sm:text-base md:text-lg font-extrabold leading-tight">
                                     {currentQuestion.text.replace(/this (life )?goal/gi, `"${currentGoal.name}"`)}
                                 </h3>
                             </motion.div>
 
-                            {/* Action Buttons - White by default, Orange on select */}
-                            <div className="w-full grid grid-cols-2 gap-4 sm:gap-6 mt-2">
+                            {/* Action Buttons - Minimal margins, maximum width */}
+                            <div className="w-full mx-0.5 sm:mx-1 md:mx-2 grid grid-cols-2 gap-6 sm:gap-8 mt-2">
                                 <button
                                     onClick={() => handleAnswer(true)}
                                     disabled={isAnswering}

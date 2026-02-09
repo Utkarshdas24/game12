@@ -59,19 +59,24 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
             {/* Content Layer - justify-center for impact */}
             <div className="ghibli-content justify-between sm:justify-center py-4 sm:py-8 min-h-0">
 
-                {/* Header Section - More prominent results */}
+                {/* Header Section - Heading above speedometer */}
                 <div className="text-center mb-3 sm:mb-4 shrink-0">
+                    {/* Heading Text - Above Speedometer - Two lines */}
+                    <h1 className="text-base sm:text-lg md:text-xl font-black text-white uppercase tracking-tighter italic mb-2">
+                        Hi {userName || 'Bajaj'}!
+                    </h1>
+                    <h2 className="text-base sm:text-lg md:text-xl text-white uppercase tracking-tighter italic mb-3 sm:mb-4">
+                        Your <span className="font-black">life goals</span> score is
+                    </h2>
+
+                    {/* Speedometer */}
                     <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className="inline-block transform scale-90 sm:scale-100 mb-1 sm:mb-2"
+                        className="inline-block transform scale-90 sm:scale-100"
                     >
                         <Speedometer score={Math.round(score)} />
                     </motion.div>
-
-                    <h1 className="text-base sm:text-lg md:text-xl font-black text-white uppercase tracking-tighter italic">
-                        Hi {userName || 'Adventurer'}, Your life goals score is {Math.round(score)}
-                    </h1>
                 </div>
 
                 {/* Form Area - More robust and premium */}

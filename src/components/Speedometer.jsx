@@ -176,13 +176,10 @@ const Speedometer = ({ score }) => {
                 className="w-full max-w-[350px] drop-shadow-2xl"
             />
 
-            {/* Percentage Text centered, but slightly lower or appropriately placed */}
+            {/* Score Text centered in gauge - Enhanced with glow */}
             <div className="absolute top-[65%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
-                <div className="text-4xl font-bold text-white drop-shadow-md">
-                    {displayScore}%
-                </div>
-                <div className="text-sm font-medium text-blue-200 tracking-wider">
-                    COMPLETED
+                <div className="text-4xl font-bold text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]" style={{ textShadow: '0 0 20px rgba(255,255,255,0.7), 0 0 30px rgba(255,255,255,0.4)' }}>
+                    {displayScore}<span className="text-xl">/100</span>
                 </div>
             </div>
         </div>
