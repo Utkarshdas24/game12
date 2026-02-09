@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --bajaj-blue: #0066B2;
+        --bajaj-orange: #FF8C00;
+        --bajaj-orange-dark: #993D00;
+        --charcoal: #2D3748;
+    }
+
+    body {
+        @apply bg-slate-900 text-slate-800 overflow-hidden;
+        font-family: 'Inter', sans-serif;
+    }
+}
+
+@layer components {
+    /* Responsive Container for the Quiz App */
+    .quiz-container {
+        @apply w-full h-[100dvh] flex items-center justify-center p-2 sm:p-4;
+    }
+
+    /* Standardized Ghibli Card Layout - Optimized for PC and Mobile */
+    .ghibli-card {
+        @apply relative w-full h-[100dvh] flex flex-col overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)];
+        @apply bg-[#0066B2] border-slate-800;
+        
+        /* Mobile first */
+        border-width: 6px;
+    }
+    
+    /* PC / Tablet Optimization - Responsive to viewport height to avoid clipping */
+    @media (min-width: 640px) {
+        .ghibli-card {
+            border-width: 8px;
+            max-width: 500px;
+            height: 94vh; 
+            max-height: 800px;
+            min-height: 550px;
+            margin: auto;
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .ghibli-card {
+            max-width: 520px;
+        }
+    }
+
+    /* Inner Content Area - Focus on middle scroll if needed */
+    .ghibli-content {
+        @apply relative z-10 w-full h-full flex flex-col py-4 px-4 sm:px-8 overflow-y-auto overflow-x-hidden custom-scrollbar;
+    }
+
+    /* 3D Button - Unified Premium Style */
+    .btn-primary-3d {
+        @apply relative bg-[#FF8C00] hover:bg-[#FF7000] text-white font-black transition-all uppercase tracking-widest border-2 border-white/20;
+        @apply shadow-[0_6px_0_#993D00] active:translate-y-1 active:shadow-none;
+        @apply py-3 sm:py-4 px-6 text-base sm:text-lg;
+    }
+
+    /* 3D Button - White Secondary */
+    .btn-secondary-3d {
+        @apply relative bg-white hover:bg-slate-50 text-slate-700 font-extrabold transition-all border-2 border-slate-100;
+        @apply shadow-[0_6px_0_#cbd5e1] active:translate-y-1 active:shadow-none;
+        @apply py-3 sm:py-4 px-6 text-base sm:text-lg;
+    }
+
+    /* Modern Progress Bar */
+    .progress-track {
+        @apply w-full h-2.5 bg-black/20 overflow-hidden;
+    }
+    .progress-fill {
+        @apply h-full bg-[#FF8C00] shadow-[0_0_15px_rgba(255,140,0,0.6)];
+    }
+
+    /* Custom Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Background Utility */
+.bg-burst {
+    @apply absolute inset-0 z-0 pointer-events-none bg-cover bg-center;
+    background-image: url('/assets/background_burst.png');
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+}
