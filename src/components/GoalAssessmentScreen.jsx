@@ -138,7 +138,7 @@ const GoalAssessmentScreen = ({
                         key="content"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="ghibli-content justify-between sm:justify-center py-2 sm:py-6"
+                        className="ghibli-content justify-between sm:justify-center py-2 sm:py-4"
                     >
                         {/* Header Area - Top bar with GOAL and Timer */}
                         <div className="w-full shrink-0 mb-3 sm:mb-4">
@@ -172,8 +172,8 @@ const GoalAssessmentScreen = ({
                                 />
                             </div>
 
-                            {/* Goal Title - Centered, Large, Dominant */}
-                            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-extrabold drop-shadow-md text-center mt-3 uppercase">
+                            {/* Goal Title - Centered, Large, Dominant - Reduced top margin */}
+                            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-extrabold drop-shadow-md text-center mt-1 uppercase">
                                 {currentGoal.name}
                             </h2>
                         </div>
@@ -184,8 +184,8 @@ const GoalAssessmentScreen = ({
                             {/* Animation/Video - 3-layer containment to prevent clipping */}
                             {/* Layer 1: Safe Zone - NO overflow-hidden */}
                             <div className="w-full flex justify-center items-center">
-                                {/* Layer 2: Frame - Size controller - Balanced size */}
-                                <div className="relative w-[360px] h-[360px] sm:w-[400px] sm:h-[400px] md:w-[440px] md:h-[440px] flex items-center justify-center">
+                                {/* Layer 2: Frame - Size controller - Reduced for single screen */}
+                                <div className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] md:w-[380px] md:h-[380px] flex items-center justify-center">
                                     {/* Layer 3: Animation - Constrained, NO absolute positioning */}
                                     <AnimatePresence mode='wait'>
                                         <motion.video
@@ -214,7 +214,7 @@ const GoalAssessmentScreen = ({
                                 key={`${currentGoal.id}-${currentQuestionIndex}`}
                                 initial={{ opacity: 0, y: 15 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="w-full mx-0.5 sm:mx-1 md:mx-2 bg-white/95 backdrop-blur-sm p-4 sm:p-6 shadow-2xl border-4 border-white/50 text-center"
+                                className="w-full mx-0.5 sm:mx-1 md:mx-2 bg-white/95 backdrop-blur-sm p-3 sm:p-5 shadow-2xl border-4 border-white/50 text-center"
                             >
                                 <h3 className="text-slate-800 text-sm sm:text-base md:text-lg font-extrabold leading-tight">
                                     {currentQuestion.text.replace(/this (life )?goal/gi, `"${currentGoal.name}"`)}
@@ -222,11 +222,11 @@ const GoalAssessmentScreen = ({
                             </motion.div>
 
                             {/* Action Buttons - Minimal margins, maximum width */}
-                            <div className="w-full mx-0.5 sm:mx-1 md:mx-2 grid grid-cols-2 gap-6 sm:gap-8 mt-2">
+                            <div className="w-full mx-0.5 sm:mx-1 md:mx-2 grid grid-cols-2 gap-3 sm:gap-5 mt-2">
                                 <button
                                     onClick={() => handleAnswer(true)}
                                     disabled={isAnswering}
-                                    className={`relative !py-4 sm:!py-5 !text-lg sm:!text-xl font-black transition-all border-4 uppercase tracking-widest active:translate-y-1 active:shadow-none shadow-[0_6px_0_rgba(0,0,0,0.2)] ${isAnswering && selectedAnswer === true
+                                    className={`relative !py-3 sm:!py-4 !text-lg sm:!text-xl font-black transition-all border-4 uppercase tracking-widest active:translate-y-1 active:shadow-none shadow-[0_6px_0_rgba(0,0,0,0.2)] ${isAnswering && selectedAnswer === true
                                         ? 'bg-[#FF8C00] border-[#FF8C00] text-slate-900 shadow-[0_6px_0_#993D00]'
                                         : 'bg-white border-white/50 text-[#0066B2] hover:bg-slate-50'
                                         }`}
@@ -236,7 +236,7 @@ const GoalAssessmentScreen = ({
                                 <button
                                     onClick={() => handleAnswer(false)}
                                     disabled={isAnswering}
-                                    className={`relative !py-4 sm:!py-5 !text-lg sm:!text-xl font-black transition-all border-4 uppercase tracking-widest active:translate-y-1 active:shadow-none shadow-[0_6px_0_rgba(0,0,0,0.2)] ${isAnswering && selectedAnswer === false
+                                    className={`relative !py-3 sm:!py-4 !text-lg sm:!text-xl font-black transition-all border-4 uppercase tracking-widest active:translate-y-1 active:shadow-none shadow-[0_6px_0_rgba(0,0,0,0.2)] ${isAnswering && selectedAnswer === false
                                         ? 'bg-[#FF8C00] border-[#FF8C00] text-slate-900 shadow-[0_6px_0_#993D00]'
                                         : 'bg-white border-white/50 text-[#0066B2] hover:bg-slate-50'
                                         }`}
