@@ -40,12 +40,12 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
                 date: formData.date,
                 time: formData.time
             });
-            onBookSlot(formData);
-            setShowBooking(false);
         } catch (error) {
             console.error(error);
         } finally {
             setIsSubmitting(false);
+            onBookSlot(formData);
+            setShowBooking(false);
         }
     };
 
