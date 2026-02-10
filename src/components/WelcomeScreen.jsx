@@ -62,12 +62,12 @@ const WelcomeScreen = ({ onStart }) => {
                     <img
                         src="/assets/gold_coins-removebg-preview.png"
                         alt="Gold Coins"
-                        className="absolute bottom-[2.1rem] sm:bottom-4 -left-6 w-32 sm:w-32 md:w-40 z-0 opacity-100 drop-shadow-xl"
+                        className="absolute bottom-[2%] sm:bottom-4 -left-[6%] sm:-left-6 w-[25%] sm:w-32 md:w-40 z-0 opacity-100 drop-shadow-xl"
                     />
                     <img
                         src="/assets/gold_coins-removebg-preview.png"
                         alt="Gold Coins"
-                        className="absolute bottom-[2.1rem] sm:bottom-4 -right-6 w-32 sm:w-32 md:w-40 z-0 opacity-100 transform scale-x-[-1] drop-shadow-xl"
+                        className="absolute bottom-[2%] sm:bottom-4 -right-[6%] sm:-right-6 w-[25%] sm:w-32 md:w-40 z-0 opacity-100 transform scale-x-[-1] drop-shadow-xl"
                     />
 
                     {/* Background Characters - Distinct Mobile & Desktop Styles */}
@@ -79,10 +79,10 @@ const WelcomeScreen = ({ onStart }) => {
                             z-0 
                             
                             /* Mobile Style (User Requested) */
-                            w-[158%] 
+                            w-[140%] 
                             max-w-none 
-                            left-[-28%] 
-                            top-[18%]
+                            left-[-20%] 
+                            top-[8%]
                             opacity-100
 
                             /* Desktop Style */
@@ -100,7 +100,7 @@ const WelcomeScreen = ({ onStart }) => {
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.2, type: "spring" }}
-                        className="relative z-10 w-full max-w-[240px] sm:max-w-[260px] md:max-w-[290px] bg-white shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col items-center border-[4px] sm:border-[6px] border-[#34495E] overflow-hidden shrink-0 transform -translate-y-4 top-32 sm:top-0"
+                        className="relative z-10 w-full max-w-[240px] sm:max-w-[260px] md:max-w-[290px] bg-white shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col items-center border-[4px] sm:border-[6px] border-[#34495E] overflow-hidden shrink-0 transform -translate-y-4 top-[10%] sm:top-0"
                     >
                         {/* Clip Element */}
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 sm:w-16 h-4 sm:h-5 bg-[#E5533D] shadow-lg flex items-center justify-center border-b-2 sm:border-b-4 border-[#C0392B] z-30">
@@ -130,7 +130,7 @@ const WelcomeScreen = ({ onStart }) => {
                         transition={{ delay: 0.3, type: "spring", damping: 15 }}
                         src="/assets/character_woman-removebg-preview.png"
                         alt="Professional Woman"
-                        className="absolute bottom-[50px] sm:bottom-0 -left-20 sm:-left-20 md:-left-24 h-[230px] sm:h-[240px] md:h-[280px] lg:h-[320px] object-contain z-20 drop-shadow-xl"
+                        className="absolute bottom-[6%] sm:bottom-0 -left-[16%] sm:-left-20 md:-left-24 h-[40%] sm:h-[240px] md:h-[280px] lg:h-[320px] object-contain z-20 drop-shadow-xl"
                     />
 
                     <motion.img
@@ -139,7 +139,7 @@ const WelcomeScreen = ({ onStart }) => {
                         transition={{ delay: 0.3, type: "spring", damping: 15 }}
                         src="/assets/character_man-removebg-preview.png"
                         alt="Professional Man"
-                        className="absolute bottom-[50px] sm:bottom-0 -right-20 sm:-right-20 md:-right-24 h-[240px] sm:h-[250px] md:h-[290px] lg:h-[330px] object-contain z-20 drop-shadow-xl"
+                        className="absolute bottom-[6%] sm:bottom-0 -right-[16%] sm:-right-20 md:-right-24 h-[42%] sm:h-[250px] md:h-[290px] lg:h-[330px] object-contain z-20 drop-shadow-xl"
                     />
                     />
                 </div>
