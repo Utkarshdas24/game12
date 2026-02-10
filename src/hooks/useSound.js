@@ -6,12 +6,17 @@ import { useRef, useCallback } from 'react';
 export const useSound = () => {
     const soundEnabled = useRef(true);
 
-    const playSound = useCallback((soundType) => {
+    const playSound = useCallback((soundType, options = {}) => {
         if (!soundEnabled.current) return;
 
         try {
             const audio = new Audio(`/sounds/${soundType}.wav`);
             audio.volume = 0.5;
+
+            if (options.startTime) {
+                audio.currentTime = options.startTime;
+            }
+
             audio.play().catch(err => {
                 // Silently fail if sound doesn't exist or can't play
             });

@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSound } from '../hooks/useSound';
 
 const CountdownScreen = ({ onComplete, userName = "User" }) => {
     const [count, setCount] = useState(3);
+    const { playSound } = useSound();
 
     useEffect(() => {
+        if (count === 3) {
+            playSound('mixkit-clock-countdown-bleeps-916', { startTime: 1.0 });
+        }
+
         if (count > 0) {
             const timer = setTimeout(() => setCount(count - 1), 1000);
             return () => clearTimeout(timer);
         } else {
-            const timer = setTimeout(onComplete, 2000);
+            const timer = setTimeout(onComplete, 1000);
             return () => clearTimeout(timer);
         }
-    }, [count, onComplete]);
+    }, [count, onComplete, playSound]);
 
     // Circle properties
     const radius = 120;

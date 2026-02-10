@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Input } from "./ui/input";
-import { PhoneCall, RotateCcw, X, Calendar } from "lucide-react";
+import { PhoneCall, RotateCcw, X, Calendar, Share, Share2 } from "lucide-react";
 import Confetti from './Confetti';
 import { isValidPhone } from '../utils/helpers';
 import Speedometer from './Speedometer';
@@ -49,9 +49,41 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
         }
     };
 
+    const handleShare = async () => {
+        const shareData = {
+            title: 'My Life Goals Score',
+            text: `I scored ${Math.round(score)}/100 on the Bajaj Allianz Life Goals Quiz! Check your score now.`,
+            url: window.location.href
+        };
+
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+            } catch (err) {
+                console.log('Error sharing:', err);
+            }
+        } else {
+            // Fallback
+            try {
+                await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
+                alert('Score copied to clipboard!');
+            } catch (err) {
+                console.error('Failed to copy:', err);
+            }
+        }
+    };
+
     return (
         <div className="ghibli-card">
             <Confetti />
+
+            {/* Top Right Share Icon */}
+            <button
+                onClick={handleShare}
+                className="absolute top-4 right-4 z-50 text-white/90 hover:text-white transition-opacity p-2"
+            >
+                <Share2 className="w-6 h-6 sm:w-7 sm:h-7 drop-shadow-md" strokeWidth={2.5} />
+            </button>
 
             {/* Background Pattern */}
             <div className="bg-burst"></div>
@@ -62,11 +94,11 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
                 {/* Header Section - Heading above speedometer */}
                 <div className="text-center mb-3 sm:mb-4 shrink-0">
                     {/* Heading Text - Above Speedometer - Two lines */}
-                    <h1 className="text-base sm:text-lg md:text-xl font-black text-white uppercase tracking-tighter italic mb-2">
-                        Hi {userName || 'Bajaj'}!
+                    <h1 className="text-base sm:text-lg md:text-xl font-medium text-white uppercase tracking-wide italic mb-2">
+                        Hi <span className="ml-1 text-2xl sm:text-3xl md:text-4xl font-black">{userName || 'Bajaj'}!</span>
                     </h1>
-                    <h2 className="text-base sm:text-lg md:text-xl text-white uppercase tracking-tighter italic mb-3 sm:mb-4">
-                        Your <span className="font-black">life goals</span> score is
+                    <h2 className="text-base sm:text-lg md:text-xl text-white uppercase tracking-wide italic mb-3 sm:mb-4">
+                        Your <span className="font-black text-lg sm:text-xl md:text-2xl text-[#FF8C00] drop-shadow-[0_0_10px_rgba(255,140,0,0.8)]">life goals</span> score is
                     </h2>
 
                     {/* Speedometer */}
@@ -76,6 +108,21 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
                         className="inline-block transform scale-90 sm:scale-100"
                     >
                         <Speedometer score={Math.round(score)} />
+                    </motion.div>
+
+                    {/* Share Button */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="flex justify-center mt-4"
+                    >
+                        <button
+                            onClick={handleShare}
+                            className="bg-gradient-to-r from-[#FF8C00] to-[#FF7000] hover:from-[#FF7000] hover:to-[#E65C00] text-white font-black py-2.5 px-8 rounded-full shadow-[0_4px_0_#993D00] active:translate-y-1 active:shadow-none transition-all flex items-center gap-3 text-sm sm:text-base border-2 border-white/20"
+                        >
+                            <Share className="w-5 h-5" /> SHARE
+                        </button>
                     </motion.div>
                 </div>
 

@@ -216,7 +216,7 @@ const GoalAssessmentScreen = ({
                                 animate={{ opacity: 1, y: 0 }}
                                 className="w-full mx-0.5 sm:mx-1 md:mx-2 bg-white/95 backdrop-blur-sm p-3 sm:p-5 shadow-2xl border-4 border-white/50 text-center"
                             >
-                                <h3 className="text-slate-800 text-sm sm:text-base md:text-lg font-extrabold leading-tight">
+                                <h3 className="text-[#0066B2] text-lg sm:text-xl md:text-2xl font-black leading-snug drop-shadow-sm">
                                     {currentQuestion.text.replace(/this (life )?goal/gi, `"${currentGoal.name}"`)}
                                 </h3>
                             </motion.div>
