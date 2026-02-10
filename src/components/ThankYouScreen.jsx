@@ -15,6 +15,25 @@ const ThankYouScreen = ({ userName = "User", score, onRestart }) => {
             {/* Content Layer - Responsive padding */}
             <div className="ghibli-content justify-between sm:justify-center py-4 sm:py-8">
 
+                {/* Main Text - Optimized size */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center mt-10 sm:mt-16 mb-6 sm:mb-8 flex flex-col items-center"
+                >
+                    <h2 className="text-5xl sm:text-6xl md:text-7xl font-black text-white drop-shadow-xl mb-4 tracking-tighter italic leading-none">
+                        THANK YOU!
+                    </h2>
+
+                    <div className="text-2xl sm:text-3xl font-black text-white mb-2">
+                        {userName}
+                    </div>
+
+                    <p className="text-blue-100 text-sm sm:text-lg font-bold leading-relaxed opacity-90 max-w-xs mx-auto">
+                        Your details have been recorded.
+                    </p>
+                </motion.div>
+
                 {/* White Details Card - Premium appearance */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
