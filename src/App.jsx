@@ -10,7 +10,7 @@ const GoalSelectionScreen = lazy(() => import('./components/GoalSelectionScreen'
 const CountdownScreen = lazy(() => import('./components/CountdownScreen'));
 const GoalAssessmentScreen = lazy(() => import('./components/GoalAssessmentScreen'));
 const ScoreResultsScreen = lazy(() => import('./components/ScoreResultsScreen'));
-const FinalThankYouScreen = lazy(() => import('./components/FinalThankYouScreen'));
+const ThankYouScreen = lazy(() => import('./components/ThankYouScreen'));
 
 function App() {
     const {
@@ -65,7 +65,7 @@ function App() {
                 );
             case SCREENS.THANK_YOU:
                 return (
-                    <FinalThankYouScreen
+                    <ThankYouScreen
                         key="thank-you"
                         userName={leadName || "Adventurer"}
                         onRestart={handleRestart}

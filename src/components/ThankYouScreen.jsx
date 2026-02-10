@@ -4,7 +4,7 @@ import Confetti from './Confetti';
 import RotatingText from './RotatingText';
 import Speedometer from './Speedometer';
 
-const FinalThankYouScreen = ({ userName = "User", score, onRestart }) => {
+const ThankYouScreen = ({ userName = "User", score, onRestart }) => {
     return (
         <div className="ghibli-card">
             <Confetti />
@@ -71,4 +71,4 @@ const FinalThankYouScreen = ({ userName = "User", score, onRestart }) => {
     );
 };
 
-export default FinalThankYouScreen;
+export default ThankYouScreen;
