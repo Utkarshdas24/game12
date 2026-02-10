@@ -15,70 +15,41 @@ const ThankYouScreen = ({ userName = "User", score, onRestart }) => {
             {/* Content Layer - Responsive padding */}
             <div className="ghibli-content justify-between sm:justify-center py-4 sm:py-8">
 
-                {/* Main Text - Optimized size */}
+                {/* Simple Thank You Message - Centered */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center mt-10 sm:mt-16 mb-6 sm:mb-8 flex flex-col items-center"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    className="flex flex-col items-center justify-center my-8 sm:my-12 flex-1"
                 >
-                    <h2 className="text-5xl sm:text-6xl md:text-7xl font-black text-white drop-shadow-xl mb-4 tracking-tighter italic leading-none">
+                    <motion.h1
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.2, type: "spring", stiffness: 300, damping: 15 }}
+                        className="text-5xl sm:text-6xl md:text-7xl font-black text-white italic tracking-tighter drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] mb-4"
+                    >
                         THANK YOU!
-                    </h2>
+                    </motion.h1>
 
-                    <div className="text-2xl sm:text-3xl font-black text-white mb-2">
+                    {/* Name - Big, No Background */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                        className="text-2xl sm:text-3xl md:text-4xl font-black text-blue-200 tracking-wide mb-2 text-center shadow-black drop-shadow-md"
+                    >
                         {userName}
-                    </div>
+                    </motion.div>
 
-                    <p className="text-blue-100 text-sm sm:text-lg font-bold leading-relaxed opacity-90 max-w-xs mx-auto">
+                    {/* Recorded Message - Small */}
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.6 }}
+                        className="text-sm sm:text-base text-blue-100/80 font-bold uppercase tracking-widest text-center"
+                    >
                         Your details have been recorded.
-                    </p>
-                </motion.div>
-
-                {/* White Details Card - Premium appearance */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="bg-white p-5 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-4 border-white/50 mb-4"
-                >
-                    {/* Expert Contact Section */}
-                    <div className="flex items-center gap-4 sm:gap-6 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b-2 border-slate-50">
-                        <div className="bg-[#0066B2] p-3 sm:p-4 shadow-lg shrink-0">
-                            <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                        </div>
-                        <div>
-                            <h3 className="text-[#0066B2] font-black text-[10px] sm:text-xs uppercase tracking-widest mb-1">
-                                Expert Incoming
-                            </h3>
-                            <p className="text-slate-600 text-[11px] sm:text-sm font-bold leading-snug">
-                                strategist will reach out to you within 24 hours.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Banner Section */}
-                    <div className="flex flex-col items-center justify-center py-2 sm:py-4">
-                        <div className="w-fit max-w-full px-1">
-                            <RotatingText
-                                texts={[
-                                    "10x Your Life Goals",
-                                    "Secure Family Future",
-                                    "Invest Smart, Live Better",
-                                    "Plan Ahead, Live Free",
-                                    "Wealth is a Journey"
-                                ]}
-                                mainClassName="px-3 sm:px-6 py-2 sm:py-3 bg-[#FF8C00] text-white shadow-lg overflow-hidden relative font-black text-[10px] sm:text-lg md:text-xl uppercase tracking-tight sm:tracking-widest whitespace-nowrap min-w-0"
-                                staggerFrom={"last"}
-                                initial={{ y: "100%" }}
-                                animate={{ y: 0 }}
-                                exit={{ y: "-120%" }}
-                                staggerDuration={0.02}
-                                splitLevelClassName="overflow-hidden flex flex-nowrap justify-center gap-x-1 sm:gap-x-2"
-                                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                                rotationInterval={3000}
-                            />
-                        </div>
-                    </div>
+                    </motion.p>
                 </motion.div>
 
                 {/* Footer Actions */}

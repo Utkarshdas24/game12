@@ -173,7 +173,7 @@ const GoalAssessmentScreen = ({
                             </div>
 
                             {/* Goal Title - Centered, Large, Dominant - Reduced top margin */}
-                            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-extrabold drop-shadow-md text-center mt-1 uppercase">
+                            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl pt-8 font-extrabold drop-shadow-md text-center mt-1 uppercase">
                                 {currentGoal.name}
                             </h2>
                         </div>
