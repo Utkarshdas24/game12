@@ -51,8 +51,8 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
 
     const handleShare = async () => {
         const shareData = {
-            title: 'My Life Goals Score',
-            text: `I scored ${Math.round(score)}/100 on the Bajaj Allianz Life Goals Quiz! Check your score now.`,
+            title: 'Bajaj Life Goals Quiz',
+            text: `Check your Life Goals readiness! Take the Bajaj Life Goals Quiz and discover how prepared you are for your future.`,
             url: window.location.href
         };
 
@@ -66,7 +66,7 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
             // Fallback
             try {
                 await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
-                alert('Score copied to clipboard!');
+                alert('Link copied to clipboard!');
             } catch (err) {
                 console.error('Failed to copy:', err);
             }
