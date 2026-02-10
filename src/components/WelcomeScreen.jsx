@@ -141,7 +141,6 @@ const WelcomeScreen = ({ onStart }) => {
                         alt="Professional Man"
                         className="absolute bottom-[6%] sm:bottom-0 -right-[16%] sm:-right-20 md:-right-24 h-[42%] sm:h-[250px] md:h-[290px] lg:h-[330px] object-contain z-20 drop-shadow-xl"
                     />
-                    />
                 </div>
 
                 {/* Footer Section - Better margins */}
