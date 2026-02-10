@@ -51,9 +51,9 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
 
     const handleShare = async () => {
         const shareData = {
-            title: 'My Life Goals Score',
-            text: `I scored ${Math.round(score)}/100 on the Bajaj Allianz Life Goals Quiz! Check your score now.`,
-            url: window.location.href
+            title: 'Bajaj Life Goals Quiz',
+            text: 'Check your Life Goals readiness! Take the Bajaj Life Goals Quiz and discover how prepared you are for your future. https://game12-inky.vercel.app/',
+            url: 'https://game12-inky.vercel.app/'
         };
 
         if (navigator.share) {
@@ -65,8 +65,8 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
         } else {
             // Fallback
             try {
-                await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
-                alert('Score copied to clipboard!');
+                await navigator.clipboard.writeText(shareData.text);
+                alert('Link copied to clipboard!');
             } catch (err) {
                 console.error('Failed to copy:', err);
             }
@@ -115,7 +115,7 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="flex justify-center mt-4"
+                        className="flex justify-center mt-2 sm:mt-3"
                     >
                         <button
                             onClick={handleShare}
@@ -131,7 +131,7 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="bg-white p-4 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-4 border-white/50 mb-3 overflow-y-auto custom-scrollbar"
+                    className="bg-white p-4 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-4 border-white/50 mb-3 shrink-0"
                 >
                     <p className="text-slate-600 text-[10px] sm:text-sm font-bold text-center mb-4 leading-relaxed">
                         You can improve your preparedness score further. Our Relationship Manager will reach out shortly.
