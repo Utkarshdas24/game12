@@ -34,65 +34,134 @@ const WelcomeScreen = ({ onStart }) => {
             <div className="bg-burst"></div>
 
             {/* Content Container - Center aligned for impact */}
-            <div className="ghibli-content justify-between sm:justify-center py-4 sm:py-8">
+            <div className="ghibli-content justify-between sm:justify-start py-4 sm:py-0">
 
                 {/* Header Section - Larger responsive typography */}
-                <header className="w-full flex flex-col items-center z-50 shrink-0 mb-4 sm:mb-6">
+                <header className="w-full flex flex-col items-center z-50 shrink-0 mb-4 sm:mb-8 sm:mt-12">
                     <motion.div
                         initial={{ y: -30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        className="text-center"
+                        className="text-center w-full"
                     >
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.5)] tracking-tighter leading-none mb-1 italic">
-                            Are you prepared to
-                        </h1>
-                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] tracking-tight leading-none mb-1 italic">
-                            achieve your
-                        </h2>
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#FFD700] tracking-tight leading-none uppercase drop-shadow-[0_0_15px_rgba(255,215,0,0.6)]">
-                            LIFE GOALS?
-                        </h1>
+                        {/* Mobile Header: 3 Lines with Glow */}
+                        <div className="block sm:hidden mt-2 min-[375px]:mt-6">
+                            <h1 className="text-xl min-[375px]:text-2xl font-black text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.5)] tracking-tighter leading-none mb-1 italic">
+                                Are you prepared to
+                            </h1>
+                            <h1 className="text-xl min-[375px]:text-2xl font-black text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.5)] tracking-tighter leading-none mb-1 italic">
+                                achieve your
+                            </h1>
+                            <h1 className="text-3xl min-[375px]:text-4xl font-black text-[#FFD700] tracking-tight leading-none uppercase mt-1 drop-shadow-[0_0_30px_rgba(255,215,0,1)] stroke-black stroke-2">
+                                LIFE GOALS?
+                            </h1>
+                        </div>
+
+                        {/* Desktop Header: 3 Lines with Glow on "LIFE GOALS?" */}
+                        <div className="hidden sm:block">
+                            <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.5)] tracking-tighter leading-none mb-1 italic">
+                                Are you prepared to
+                            </h1>
+                            <h1 className="text-xl md:text-2xl lg:text-3xl font-black text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.5)] tracking-tighter leading-none mb-2 italic">
+                                achieve your
+                            </h1>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#FFD700] tracking-tight leading-none uppercase mt-2 drop-shadow-[0_0_40px_rgba(255,215,0,0.8)] stroke-black stroke-2">
+                                LIFE GOALS?
+                            </h1>
+                        </div>
                     </motion.div>
                 </header>
 
-                {/* Main Visuals Area - Scaled down for PC/Tablet */}
-                <div className="relative w-full flex-1 flex items-center justify-center min-h-[300px] sm:min-h-[350px] my-4 overflow-visible">
+                {/* Main Visuals Area - Mobile View */}
+                <div className="relative w-full flex-1 flex sm:hidden items-end justify-center min-h-[250px] md:min-h-[300px] my-2 min-[375px]:my-4 overflow-visible">
+
+                    {/* background_characters.png - Mobile */}
+                    <img
+                        src="/assets/background_characters.png"
+                        alt="Background Characters"
+                        className="absolute inset-0 w-full h-full object-contain scale-x-[1.1] scale-y-[1.1] min-[375px]:scale-x-[1.18] min-[375px]:scale-y-[1.2] z-0 opacity-100 origin-center"
+                        style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)' }}
+                    />
+
+                    {/* Gold Coins */}
+                    <img
+                        src="/assets/gold_coins-removebg-preview.png"
+                        alt="Gold Coins"
+                        className="absolute bottom-4 -left-8 min-[375px]:-left-6 w-24 min-[375px]:w-32 z-10 opacity-100 drop-shadow-xl"
+                    />
+                    <img
+                        src="/assets/gold_coins-removebg-preview.png"
+                        alt="Gold Coins"
+                        className="absolute bottom-4 -right-8 min-[375px]:-right-6 w-24 min-[375px]:w-32 z-10 opacity-100 transform scale-x-[-1] drop-shadow-xl"
+                    />
+
+                    {/* Central Clipboard */}
+                    <motion.div
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.2, type: "spring" }}
+                        className="relative z-20 w-full max-w-[200px] min-[375px]:max-w-[240px] bg-white shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col items-center border-[3px] min-[375px]:border-[4px] border-[#34495E] overflow-hidden shrink-0 mb-8"
+                    >
+                        {/* Clip Element */}
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 min-[375px]:w-12 h-3 min-[375px]:h-4 bg-[#E5533D] shadow-lg flex items-center justify-center border-b-2 border-[#C0392B] z-30">
+                            <div className="w-1.5 min-[375px]:w-2 h-1.5 min-[375px]:h-2 bg-white border-2 border-[#C0392B] shadow-inner"></div>
+                        </div>
+
+                        <div className="pt-4 min-[375px]:pt-5 pb-3 min-[375px]:pb-4 px-2 min-[375px]:px-3 w-full bg-gradient-to-b from-white to-slate-100">
+                            <h2 className="text-[#E67E22] text-[8px] min-[375px]:text-[9px] font-black uppercase text-center mb-1.5 min-[375px]:mb-2 tracking-tighter">
+                                MISSION: <span className="text-[#D35400]">LIFE GOALS DONE</span>
+                            </h2>
+
+                            <ul className="grid grid-cols-1 gap-0.5 min-[375px]:gap-1 px-2 min-[375px]:px-4">
+                                {lifeGoals.map((goal) => (
+                                    <li key={goal.id} className="flex items-center gap-1 min-[375px]:gap-1.5 text-[7px] min-[375px]:text-[8px] font-black text-[#2C3E50] border-b border-[#0066B2]/5 pb-0.5">
+                                        <span className="text-[#0066B2]">•</span>
+                                        <span className="truncate">{goal.name}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </motion.div>
+
+                    {/* Characters */}
+                    <motion.img
+                        initial={{ x: -100, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.3, type: "spring", damping: 15 }}
+                        src="/assets/character_woman-removebg-preview.png"
+                        alt="Professional Woman"
+                        className="absolute bottom-[10px] min-[375px]:bottom-[15px] -left-12 min-[375px]:-left-20 h-[180px] min-[375px]:h-[230px] object-contain z-30 drop-shadow-xl"
+                    />
+
+                    <motion.img
+                        initial={{ x: 100, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.3, type: "spring", damping: 15 }}
+                        src="/assets/character_man-removebg-preview.png"
+                        alt="Professional Man"
+                        className="absolute bottom-[10px] min-[375px]:bottom-[15px] -right-12 min-[375px]:-right-20 h-[190px] min-[375px]:h-[240px] object-contain z-30 drop-shadow-xl"
+                    />
+                </div>
+
+                {/* Main Visuals Area - Desktop/Tablet View */}
+                <div className="relative w-full flex-1 hidden sm:flex items-center justify-center min-h-[350px] my-4 overflow-visible">
+
+                    {/* background_characters.png - Desktop */}
+                    <img
+                        src="/assets/background_characters.png"
+                        alt="Background Characters"
+                        className="absolute inset-0 w-full h-full object-contain scale-125 z-0 opacity-100 origin-center"
+                    />
 
                     {/* Gold Coins - Scaled down */}
                     <img
                         src="/assets/gold_coins-removebg-preview.png"
                         alt="Gold Coins"
-                        className="absolute bottom-[2%] sm:bottom-4 -left-[6%] sm:-left-6 w-[25%] sm:w-32 md:w-40 z-0 opacity-100 drop-shadow-xl"
+                        className="absolute bottom-4 -left-6 w-32 sm:w-32 md:w-40 z-10 opacity-100 drop-shadow-xl"
                     />
                     <img
                         src="/assets/gold_coins-removebg-preview.png"
                         alt="Gold Coins"
-                        className="absolute bottom-[2%] sm:bottom-4 -right-[6%] sm:-right-6 w-[25%] sm:w-32 md:w-40 z-0 opacity-100 transform scale-x-[-1] drop-shadow-xl"
-                    />
-
-                    {/* Background Characters - Distinct Mobile & Desktop Styles */}
-                    <img
-                        src="/assets/bg_characters.png"
-                        alt="Background Characters"
-                        className="
-                            absolute 
-                            z-0 
-                            
-                            /* Mobile Style (User Requested) */
-                            w-[140%] 
-                            max-w-none 
-                            left-[-20%] 
-                            top-[8%]
-                            opacity-100
-
-                            /* Desktop Style */
-                            sm:w-[110%] 
-                            sm:h-auto 
-                            sm:left-1/2 
-                            sm:-translate-x-1/2 
-                            sm:top-[-15%]
-                            sm:opacity-100
-                        "
+                        className="absolute bottom-4 -right-6 w-32 sm:w-32 md:w-40 z-10 opacity-100 transform scale-x-[-1] drop-shadow-xl"
                     />
 
                     {/* Central Clipboard - Optimized size */}
@@ -100,7 +169,7 @@ const WelcomeScreen = ({ onStart }) => {
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.2, type: "spring" }}
-                        className="relative z-10 w-full max-w-[240px] sm:max-w-[260px] md:max-w-[290px] bg-white shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col items-center border-[4px] sm:border-[6px] border-[#34495E] overflow-hidden shrink-0 transform -translate-y-4 top-[10%] sm:top-0"
+                        className="relative z-20 w-full max-w-[240px] sm:max-w-[260px] md:max-w-[290px] bg-white shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col items-center border-[4px] sm:border-[6px] border-[#34495E] overflow-hidden shrink-0 transform -translate-y-4"
                     >
                         {/* Clip Element */}
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 sm:w-16 h-4 sm:h-5 bg-[#E5533D] shadow-lg flex items-center justify-center border-b-2 sm:border-b-4 border-[#C0392B] z-30">
@@ -130,7 +199,7 @@ const WelcomeScreen = ({ onStart }) => {
                         transition={{ delay: 0.3, type: "spring", damping: 15 }}
                         src="/assets/character_woman-removebg-preview.png"
                         alt="Professional Woman"
-                        className="absolute bottom-[6%] sm:bottom-0 -left-[16%] sm:-left-20 md:-left-24 h-[40%] sm:h-[240px] md:h-[280px] lg:h-[320px] object-contain z-20 drop-shadow-xl"
+                        className="absolute bottom-0 -left-12 sm:-left-20 md:-left-24 h-[230px] sm:h-[240px] md:h-[280px] lg:h-[320px] object-contain z-30 drop-shadow-xl"
                     />
 
                     <motion.img
@@ -139,23 +208,23 @@ const WelcomeScreen = ({ onStart }) => {
                         transition={{ delay: 0.3, type: "spring", damping: 15 }}
                         src="/assets/character_man-removebg-preview.png"
                         alt="Professional Man"
-                        className="absolute bottom-[6%] sm:bottom-0 -right-[16%] sm:-right-20 md:-right-24 h-[42%] sm:h-[250px] md:h-[290px] lg:h-[330px] object-contain z-20 drop-shadow-xl"
+                        className="absolute bottom-0 -right-12 sm:-right-20 md:-right-24 h-[240px] sm:h-[250px] md:h-[290px] lg:h-[330px] object-contain z-30 drop-shadow-xl"
                     />
                 </div>
 
                 {/* Footer Section - Better margins */}
-                <div className="w-full relative z-40 flex flex-col items-center gap-3 shrink-0 py-2">
-                    <h3 className="text-white text-base sm:text-lg md:text-xl font-black drop-shadow-xl text-center leading-tight">
+                <div className="w-full relative z-40 flex flex-col items-center gap-2 min-[375px]:gap-3 shrink-0 py-2">
+                    <h3 className="text-white text-sm min-[375px]:text-base sm:text-lg md:text-xl font-black drop-shadow-xl text-center leading-tight">
                         Measure your Life Goals preparedness
                     </h3>
 
                     <button
                         onClick={handleStartClick}
-                        className="btn-primary-3d w-full max-w-[260px] sm:max-w-[340px] !py-3 sm:!py-5 !text-lg sm:!text-xl mt-1"
+                        className="btn-primary-3d w-full max-w-[240px] min-[375px]:max-w-[260px] sm:max-w-[340px] !py-3 sm:!py-5 !text-lg sm:!text-xl mt-1"
                     >
                         START
                     </button>
-                    <p className="text-blue-200 font-bold uppercase tracking-[0.3em] mt-1 text-[8px] sm:text-[10px]">Ready for a mission?</p>
+                    <p className="text-blue-200 font-bold uppercase tracking-[0.3em] mt-1 text-[7px] min-[375px]:text-[8px] sm:text-[10px]">Ready for a mission?</p>
                 </div>
             </div>
 
@@ -175,26 +244,26 @@ const WelcomeScreen = ({ onStart }) => {
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
                             transition={{ type: "spring", damping: 25, stiffness: 300 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="relative bg-white shadow-2xl w-full max-w-[340px] p-6 border-[4px] sm:border-[6px] border-[#0066B2]"
+                            className="relative bg-white shadow-2xl w-full max-w-[320px] min-[375px]:max-w-[340px] p-5 min-[375px]:p-6 border-[4px] sm:border-[6px] border-[#0066B2]"
                         >
                             <button
                                 onClick={() => setShowNamePopup(false)}
                                 className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
                             >
-                                <X className="w-6 h-6" />
+                                <X className="w-5 h-5 min-[375px]:w-6 min-[375px]:h-6" />
                             </button>
 
-                            <div className="text-center mb-6">
-                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#0066B2] flex items-center justify-center mx-auto mb-4 shadow-xl border-4 border-white">
-                                    <span className="text-3xl sm:text-4xl">👋</span>
+                            <div className="text-center mb-4 min-[375px]:mb-6">
+                                <div className="w-14 h-14 min-[375px]:w-16 min-[375px]:h-16 sm:w-20 sm:h-20 bg-[#0066B2] flex items-center justify-center mx-auto mb-3 min-[375px]:mb-4 shadow-xl border-4 border-white">
+                                    <span className="text-2xl min-[375px]:text-3xl sm:text-4xl">👋</span>
                                 </div>
-                                <h2 className="text-[#0066B2] text-xl sm:text-2xl font-black mb-1">Welcome!</h2>
-                                <p className="text-slate-500 font-bold text-sm sm:text-base">What should we call you?</p>
+                                <h2 className="text-[#0066B2] text-lg min-[375px]:text-xl sm:text-2xl font-black mb-1">Welcome!</h2>
+                                <p className="text-slate-500 font-bold text-xs min-[375px]:text-sm sm:text-base">What should we call you?</p>
                             </div>
 
-                            <form onSubmit={handleNameSubmit} className="space-y-4">
-                                <div className="space-y-1.5">
-                                    <label className="block text-slate-700 text-[10px] sm:text-xs font-black uppercase tracking-widest ml-1" htmlFor="userName">
+                            <form onSubmit={handleNameSubmit} className="space-y-3 min-[375px]:space-y-4">
+                                <div className="space-y-1 min-[375px]:space-y-1.5">
+                                    <label className="block text-slate-700 text-[9px] min-[375px]:text-[10px] sm:text-xs font-black uppercase tracking-widest ml-1" htmlFor="userName">
                                         Your Name
                                     </label>
                                     <input
@@ -206,17 +275,17 @@ const WelcomeScreen = ({ onStart }) => {
                                             setError('');
                                         }}
                                         placeholder="Full Name"
-                                        className="w-full px-4 py-3 sm:py-4 border-4 border-slate-100 focus:border-[#0066B2] focus:outline-none focus:ring-4 focus:ring-[#0066B2]/10 text-slate-800 font-bold text-base sm:text-lg transition-all"
+                                        className="w-full px-3 py-2.5 min-[375px]:px-4 min-[375px]:py-3 sm:py-4 border-4 border-slate-100 focus:border-[#0066B2] focus:outline-none focus:ring-4 focus:ring-[#0066B2]/10 text-slate-800 font-bold text-sm min-[375px]:text-base sm:text-lg transition-all"
                                         autoFocus
                                     />
                                     {error && (
-                                        <p className="text-red-500 text-[10px] font-black uppercase tracking-wider ml-1">{error}</p>
+                                        <p className="text-red-500 text-[9px] min-[375px]:text-[10px] font-black uppercase tracking-wider ml-1">{error}</p>
                                     )}
                                 </div>
 
                                 <button
                                     type="submit"
-                                    className="btn-primary-3d w-full !py-3 sm:!py-4"
+                                    className="btn-primary-3d w-full !py-2.5 min-[375px]:!py-3 sm:!py-4"
                                 >
                                     Let's Go!
                                 </button>
