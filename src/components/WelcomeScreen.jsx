@@ -82,7 +82,7 @@ const WelcomeScreen = ({ onStart }) => {
                             w-[158%] 
                             max-w-none 
                             left-[-28%] 
-                            top-[10%]
+                            top-[18%]
                             opacity-100
 
                             /* Desktop Style */
@@ -100,7 +100,7 @@ const WelcomeScreen = ({ onStart }) => {
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.2, type: "spring" }}
-                        className="relative z-10 w-full max-w-[240px] sm:max-w-[260px] md:max-w-[290px] bg-white shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col items-center border-[4px] sm:border-[6px] border-[#34495E] overflow-hidden shrink-0 transform -translate-y-4 top-24 sm:top-0"
+                        className="relative z-10 w-full max-w-[240px] sm:max-w-[260px] md:max-w-[290px] bg-white shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col items-center border-[4px] sm:border-[6px] border-[#34495E] overflow-hidden shrink-0 transform -translate-y-4 top-32 sm:top-0"
                     >
                         {/* Clip Element */}
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 sm:w-16 h-4 sm:h-5 bg-[#E5533D] shadow-lg flex items-center justify-center border-b-2 sm:border-b-4 border-[#C0392B] z-30">
