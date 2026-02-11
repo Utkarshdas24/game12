@@ -69,7 +69,7 @@ const ThankYouScreen = ({ userName = "User", score, onRestart }) => {
                                 Expert Incoming
                             </h3>
                             <p className="text-slate-600 text-[11px] sm:text-sm font-bold leading-snug">
-                                strategist will reach out to you within 24 hours.
+                                Experts will reach out to you within 24 hours.
                             </p>
                         </div>
                     </div>
