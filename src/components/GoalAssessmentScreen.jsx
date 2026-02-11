@@ -4,15 +4,15 @@ import { assessmentQuestions } from '../data/lifeGoals';
 
 // Updated Video Mapping with new webm assets
 const goalVideos = {
-    1: '/assets/elements/childedu.webm',
-    2: '/assets/elements/retirement.webm',
-    3: '/assets/elements/house-planning.webm',
-    4: '/assets/elements/M-planning.webm',
-    5: '/assets/elements/world-travel.webm',
-    6: '/assets/elements/emergency-funds.webm',
-    7: '/assets/elements/debt-free.webm',
-    8: '/assets/elements/business-planning.webm',
-    9: '/assets/elements/health-security.webm'
+    1: './assets/elements/childedu.webm',
+    2: './assets/elements/retirement.webm',
+    3: './assets/elements/house-planning.webm',
+    4: './assets/elements/M-planning.webm',
+    5: './assets/elements/world-travel.webm',
+    6: './assets/elements/emergency-funds.webm',
+    7: './assets/elements/debt-free.webm',
+    8: './assets/elements/business-planning.webm',
+    9: './assets/elements/health-security.webm'
 };
 
 const GoalAssessmentScreen = ({
@@ -96,7 +96,7 @@ const GoalAssessmentScreen = ({
                         transition={{ duration: 0.5 }}
                         className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#0066B2] p-4 text-center"
                     >
-                        <div className="absolute inset-0 bg-[url('/assets/background_burst.png')] opacity-80 mix-blend-overlay bg-cover bg-center" />
+                        <div className="absolute inset-0 bg-[url('./assets/background_burst.png')] opacity-80 mix-blend-overlay bg-cover bg-center" />
 
                         <motion.div
                             initial={{ y: 20, opacity: 0 }}

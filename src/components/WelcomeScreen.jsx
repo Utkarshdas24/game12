@@ -76,7 +76,7 @@ const WelcomeScreen = ({ onStart }) => {
 
                     {/* background_characters.png - Mobile */}
                     <img
-                        src="/assets/background_characters.png"
+                        src="./assets/background_characters.png"
                         alt="Background Characters"
                         className="absolute inset-0 w-full h-full object-contain scale-x-[1.1] scale-y-[1.1] min-[375px]:scale-x-[1.18] min-[375px]:scale-y-[1.2] z-0 opacity-100 origin-center"
                         style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)' }}
@@ -84,12 +84,12 @@ const WelcomeScreen = ({ onStart }) => {
 
                     {/* Gold Coins */}
                     <img
-                        src="/assets/gold_coins-removebg-preview.png"
+                        src="./assets/gold_coins-removebg-preview.png"
                         alt="Gold Coins"
                         className="absolute bottom-4 -left-8 min-[375px]:-left-6 w-24 min-[375px]:w-32 z-10 opacity-100 drop-shadow-xl"
                     />
                     <img
-                        src="/assets/gold_coins-removebg-preview.png"
+                        src="./assets/gold_coins-removebg-preview.png"
                         alt="Gold Coins"
                         className="absolute bottom-4 -right-8 min-[375px]:-right-6 w-24 min-[375px]:w-32 z-10 opacity-100 transform scale-x-[-1] drop-shadow-xl"
                     />
@@ -127,7 +127,7 @@ const WelcomeScreen = ({ onStart }) => {
                         initial={{ x: -100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.3, type: "spring", damping: 15 }}
-                        src="/assets/character_woman-removebg-preview.png"
+                        src="./assets/character_woman-removebg-preview.png"
                         alt="Professional Woman"
                         className="absolute bottom-[10px] min-[375px]:bottom-[15px] -left-12 min-[375px]:-left-20 h-[180px] min-[375px]:h-[230px] object-contain z-30 drop-shadow-xl"
                     />
@@ -136,7 +136,7 @@ const WelcomeScreen = ({ onStart }) => {
                         initial={{ x: 100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.3, type: "spring", damping: 15 }}
-                        src="/assets/character_man-removebg-preview.png"
+                        src="./assets/character_man-removebg-preview.png"
                         alt="Professional Man"
                         className="absolute bottom-[10px] min-[375px]:bottom-[15px] -right-12 min-[375px]:-right-20 h-[190px] min-[375px]:h-[240px] object-contain z-30 drop-shadow-xl"
                     />
@@ -147,19 +147,19 @@ const WelcomeScreen = ({ onStart }) => {
 
                     {/* background_characters.png - Desktop */}
                     <img
-                        src="/assets/background_characters.png"
+                        src="./assets/background_characters.png"
                         alt="Background Characters"
                         className="absolute inset-0 w-full h-full object-contain scale-125 z-0 opacity-100 origin-center"
                     />
 
                     {/* Gold Coins - Scaled down */}
                     <img
-                        src="/assets/gold_coins-removebg-preview.png"
+                        src="./assets/gold_coins-removebg-preview.png"
                         alt="Gold Coins"
                         className="absolute bottom-4 -left-6 w-32 sm:w-32 md:w-40 z-10 opacity-100 drop-shadow-xl"
                     />
                     <img
-                        src="/assets/gold_coins-removebg-preview.png"
+                        src="./assets/gold_coins-removebg-preview.png"
                         alt="Gold Coins"
                         className="absolute bottom-4 -right-6 w-32 sm:w-32 md:w-40 z-10 opacity-100 transform scale-x-[-1] drop-shadow-xl"
                     />
@@ -197,7 +197,7 @@ const WelcomeScreen = ({ onStart }) => {
                         initial={{ x: -100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.3, type: "spring", damping: 15 }}
-                        src="/assets/character_woman-removebg-preview.png"
+                        src="./assets/character_woman-removebg-preview.png"
                         alt="Professional Woman"
                         className="absolute bottom-0 -left-12 sm:-left-20 md:-left-24 h-[230px] sm:h-[240px] md:h-[280px] lg:h-[320px] object-contain z-30 drop-shadow-xl"
                     />
@@ -206,7 +206,7 @@ const WelcomeScreen = ({ onStart }) => {
                         initial={{ x: 100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.3, type: "spring", damping: 15 }}
-                        src="/assets/character_man-removebg-preview.png"
+                        src="./assets/character_man-removebg-preview.png"
                         alt="Professional Man"
                         className="absolute bottom-0 -right-12 sm:-right-20 md:-right-24 h-[240px] sm:h-[250px] md:h-[290px] lg:h-[330px] object-contain z-30 drop-shadow-xl"
                     />
