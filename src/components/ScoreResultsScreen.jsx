@@ -52,7 +52,7 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
     const handleShare = async () => {
         const shareData = {
             title: 'Bajaj Life Goals Quiz',
-            text: 'Check your Life Goals readiness! Take the Bajaj Life Goals Quiz and discover how prepared you are for your future. https://game12-inky.vercel.app/',
+            text: 'Check your Life Goals readiness! Take the Bajaj Life Goals Quiz and discover how prepared you are for your future.',
             url: 'https://game12-inky.vercel.app/'
         };
 
