@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useGameState, SCREENS } from './hooks/useGameState';
 import SuccessToast from './components/SuccessToast';
@@ -32,6 +32,11 @@ function App() {
         handleBookSlot,
         handleRestart
     } = useGameState();
+
+    useEffect(() => {
+        const today = new Date().toLocaleDateString();
+        console.log('Today:', today);
+    }, []);
 
     const renderScreen = () => {
         switch (currentScreen) {

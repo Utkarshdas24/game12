@@ -96,7 +96,7 @@ const GoalAssessmentScreen = ({
                         transition={{ duration: 0.5 }}
                         className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#0066B2] p-4 text-center"
                     >
-                        <div className="absolute inset-0 bg-[url('./assets/background_burst.png')] opacity-80 mix-blend-overlay bg-cover bg-center" />
+                        <div className="absolute inset-0 bg-[url('./background_burst.png')] opacity-80 mix-blend-overlay bg-cover bg-center" />
 
                         <motion.div
                             initial={{ y: 20, opacity: 0 }}
