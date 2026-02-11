@@ -26,7 +26,7 @@
         @apply bg-slate-900 text-slate-800 overflow-hidden;
         font-family: 'Inter', sans-serif;
         /* Use dynamic viewport height with fallback */
-        min-height: 100vh;
+        min-height: 100dvh;
         min-height: 100dvh;
         min-height: -webkit-fill-available;
         /* Prevent pull-to-refresh and overscroll */
@@ -150,7 +150,7 @@
 /* Background Utility */
 .bg-burst {
     @apply absolute inset-0 z-0 pointer-events-none bg-cover bg-center;
-    background-image: url('/assets/background_burst.png');
+    background-image: url('/assets/images/background_burst.png');
     opacity: 0.6;
     mix-blend-mode: overlay;
 }

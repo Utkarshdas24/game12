@@ -4,15 +4,27 @@ import { assessmentQuestions } from '../data/lifeGoals';
 
 // Updated Video Mapping with new webm assets
 const goalVideos = {
-    1: '/assets/elements/childedu.webm',
-    2: '/assets/elements/retirement.webm',
-    3: '/assets/elements/house-planning.webm',
-    4: '/assets/elements/M-planning.webm',
-    5: '/assets/elements/world-travel.webm',
-    6: '/assets/elements/emergency-funds.webm',
-    7: '/assets/elements/debt-free.webm',
-    8: '/assets/elements/business-planning.webm',
-    9: '/assets/elements/health-security.webm'
+    1: '/assets/videos/child_edu.mp4',
+    2: '/assets/videos/retirement.mp4',
+    3: '/assets/videos/house.mp4',
+    4: '/assets/videos/couple.mp4',
+    5: '/assets/videos/travel.mp4',
+    6: '/assets/videos/funds.mp4',
+    7: '/assets/videos/debt.mp4',
+    8: '/assets/videos/business.mp4',
+    9: '/assets/videos/health.mp4'
+};
+
+const goalImages = {
+    1: '/assets/elements/child-edu.png',
+    2: '/assets/elements/retirement.png',
+    3: '/assets/elements/house.png',
+    4: '/assets/elements/couple.png',
+    5: '/assets/elements/travel.png',
+    6: '/assets/elements/funds.png',
+    7: '/assets/elements/debt.png',
+    8: '/assets/elements/Planning.png',
+    9: '/assets/elements/health.png'
 };
 
 const GoalAssessmentScreen = ({
@@ -96,7 +108,7 @@ const GoalAssessmentScreen = ({
                         transition={{ duration: 0.5 }}
                         className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#0066B2] p-4 text-center"
                     >
-                        <div className="absolute inset-0 bg-[url('/assets/background_burst.png')] opacity-80 mix-blend-overlay bg-cover bg-center" />
+                        <div className="absolute inset-0 bg-[url('/assets/images/background_burst.png')] opacity-80 mix-blend-overlay bg-cover bg-center" />
 
                         <motion.div
                             initial={{ y: 20, opacity: 0 }}
@@ -114,20 +126,12 @@ const GoalAssessmentScreen = ({
                             initial={{ scale: 0, rotate: -10 }}
                             animate={{ scale: 1, rotate: 0 }}
                             transition={{ type: "spring", bounce: 0.5, delay: 0.3 }}
-                            className="relative z-10 w-64 h-64 sm:w-80 sm:h-80 mb-8 flex items-center justify-center overflow-hidden"
+                            className="relative z-10 w-72 h-72 sm:w-96 sm:h-96 mb-8 flex items-center justify-center overflow-hidden pt-4"
                         >
-                            <video
+                            <motion.img
                                 key={currentGoal.id}
-                                src={goalVideos[currentGoal.id]}
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
+                                src={goalImages[currentGoal.id]}
                                 className="w-full h-full object-contain"
-                                style={{
-                                    clipPath: 'inset(0 10% 0 15%)',
-                                    WebkitClipPath: 'inset(0 10% 0 15%)'
-                                }}
                             />
                         </motion.div>
 
@@ -184,9 +188,9 @@ const GoalAssessmentScreen = ({
 
                             {/* Animation/Video - 3-layer containment to prevent clipping */}
                             {/* Layer 1: Safe Zone - NO overflow-hidden */}
-                            <div className="w-full flex justify-center items-center flex-grow">
+                            <div className="w-full flex justify-center items-center flex-grow pt-8">
                                 {/* Layer 2: Frame - Size controller - Increased for better visibility */}
-                                <div className="relative w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-[380px] md:h-[380px] flex items-center justify-center">
+                                <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[450px] md:h-[450px] flex items-center justify-center">
                                     {/* Layer 3: Animation - Constrained, NO absolute positioning */}
                                     <AnimatePresence mode='wait'>
                                         <motion.video
@@ -202,8 +206,8 @@ const GoalAssessmentScreen = ({
                                             transition={{ duration: 0.3 }}
                                             className="max-w-full max-h-full object-contain"
                                             style={{
-                                                clipPath: 'inset(0 10% 0 15%)',
-                                                WebkitClipPath: 'inset(0 10% 0 15%)'
+                                                maskImage: 'radial-gradient(circle, black 35%, transparent 80%)',
+                                                WebkitMaskImage: 'radial-gradient(circle, black 35%, transparent 80%)'
                                             }}
                                         />
                                     </AnimatePresence>
