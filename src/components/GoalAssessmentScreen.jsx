@@ -4,27 +4,27 @@ import { assessmentQuestions } from '../data/lifeGoals';
 
 // Updated Video Mapping with new webm assets
 const goalVideos = {
-    1: '/assets/videos/child_edu.mp4',
-    2: '/assets/videos/retirement.mp4',
-    3: '/assets/videos/house.mp4',
-    4: '/assets/videos/couple.mp4',
-    5: '/assets/videos/travel.mp4',
-    6: '/assets/videos/funds.mp4',
-    7: '/assets/videos/debt.mp4',
-    8: '/assets/videos/business.mp4',
-    9: '/assets/videos/health.mp4'
+    1: './assets/videos/child_edu.mp4',
+    2: './assets/videos/retirement.mp4',
+    3: './assets/videos/house.mp4',
+    4: './assets/videos/couple.mp4',
+    5: './assets/videos/travel.mp4',
+    6: './assets/videos/funds.mp4',
+    7: './assets/videos/debt.mp4',
+    8: './assets/videos/business.mp4',
+    9: './assets/videos/health.mp4'
 };
 
 const goalImages = {
-    1: '/assets/elements/child-edu.png',
-    2: '/assets/elements/retirement.png',
-    3: '/assets/elements/house.png',
-    4: '/assets/elements/couple.png',
-    5: '/assets/elements/travel.png',
-    6: '/assets/elements/funds.png',
-    7: '/assets/elements/debt.png',
-    8: '/assets/elements/Planning.png',
-    9: '/assets/elements/health.png'
+    1: './assets/elements/child-edu.png',
+    2: './assets/elements/retirement.png',
+    3: './assets/elements/house.png',
+    4: './assets/elements/couple.png',
+    5: './assets/elements/travel.png',
+    6: './assets/elements/funds.png',
+    7: './assets/elements/debt.png',
+    8: './assets/elements/Planning.png',
+    9: './assets/elements/health.png'
 };
 
 const GoalAssessmentScreen = ({
