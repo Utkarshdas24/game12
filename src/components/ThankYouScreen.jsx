@@ -85,7 +85,7 @@ const ThankYouScreen = ({ userName = "User", score, onRestart }) => {
                                     "Plan Ahead, Live Free",
                                     "Wealth is a Journey"
                                 ]}
-                                mainClassName="px-3 sm:px-6 py-2 sm:py-3 bg-[#FF8C00] text-white shadow-lg overflow-hidden relative font-black text-[10px] sm:text-lg md:text-xl uppercase tracking-tight sm:tracking-widest whitespace-nowrap min-w-0"
+                                mainClassName="px-3 sm:px-6 py-2 sm:py-3 bg-[#0066B2] text-white shadow-lg overflow-hidden relative font-black text-[10px] sm:text-lg md:text-xl uppercase tracking-tight sm:tracking-widest whitespace-nowrap min-w-0"
                                 staggerFrom={"last"}
                                 initial={{ y: "100%" }}
                                 animate={{ y: 0 }}

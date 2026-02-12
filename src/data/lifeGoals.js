@@ -33,13 +33,13 @@ export const lifeGoals = [
     },
     {
         id: 6,
-        name: "Emergency Fund",
-        icon: "Umbrella",
-        description: "Be prepared for unexpected expenses"
+        name: "Dream Car",
+        icon: "Car",
+        description: "Drive your dream car"
     },
     {
         id: 7,
-        name: "Debt Freedom",
+        name: "Financial Security",
         icon: "Wallet",
         description: "Become free from financial burdens"
     },
@@ -54,6 +54,12 @@ export const lifeGoals = [
         name: "Healthcare Security",
         icon: "HeartPulse",
         description: "Protect your family's health"
+    },
+    {
+        id: 10,
+        name: "Child's Marriage",
+        icon: "HeartHandshake",
+        description: "Plan for your child's wedding"
     }
 ];
 

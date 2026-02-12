@@ -9,10 +9,11 @@ const goalVideos = {
     3: './assets/videos/house.mp4',
     4: './assets/videos/couple.mp4',
     5: './assets/videos/travel.mp4',
-    6: './assets/videos/funds.mp4',
-    7: './assets/videos/debt.mp4',
+    6: './assets/videos/dream_car.mp4',
+    7: './assets/videos/financial_security.mp4',
     8: './assets/videos/business.mp4',
-    9: './assets/videos/health.mp4'
+    9: './assets/videos/health.mp4',
+    10: './assets/videos/child_marriage.mp4'
 };
 
 const goalImages = {
@@ -21,10 +22,11 @@ const goalImages = {
     3: './assets/elements/house.png',
     4: './assets/elements/couple.png',
     5: './assets/elements/travel.png',
-    6: './assets/elements/funds.png',
-    7: './assets/elements/debt.png',
+    6: './assets/elements/dream_car.png',
+    7: './assets/elements/financial_security.png',
     8: './assets/elements/Planning.png',
-    9: './assets/elements/health.png'
+    9: './assets/elements/health.png',
+    10: './assets/elements/child_marriage.png'
 };
 
 const GoalAssessmentScreen = ({
@@ -184,13 +186,13 @@ const GoalAssessmentScreen = ({
 
 
                         {/* Main Questions Container - Compact layout to fit single screen */}
-                        <div className="flex-1 flex flex-col justify-center items-center gap-0 sm:gap-3 w-full min-h-0 pb-0">
+                        <div className="flex-1 flex flex-col justify-center items-center gap-0 sm:gap-3 w-full min-h-0 pb-4">
 
                             {/* Animation/Video - 3-layer containment to prevent clipping */}
                             {/* Layer 1: Safe Zone - NO overflow-hidden */}
-                            <div className="w-full flex justify-center items-center flex-grow pt-8">
+                            <div className="w-full flex justify-center items-center flex-grow pt-2 sm:pt-8">
                                 {/* Layer 2: Frame - Size controller - Increased for better visibility */}
-                                <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[450px] md:h-[450px] flex items-center justify-center">
+                                <div className="relative w-[380px] h-[380px] sm:w-[400px] sm:h-[400px] md:w-[450px] md:h-[450px] flex items-center justify-center">
                                     {/* Layer 3: Animation - Constrained, NO absolute positioning */}
                                     <AnimatePresence mode='wait'>
                                         <motion.video
@@ -227,7 +229,7 @@ const GoalAssessmentScreen = ({
                             </motion.div>
 
                             {/* Action Buttons - Increased size */}
-                            <div className="w-full mx-0.5 sm:mx-1 md:mx-2 grid grid-cols-2 gap-3 sm:gap-5">
+                            <div className="w-full mx-0.5 sm:mx-1 md:mx-2 grid grid-cols-2 gap-3 sm:gap-5 mb-6">
                                 <button
                                     onClick={() => handleAnswer(true)}
                                     disabled={isAnswering}

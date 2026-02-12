@@ -20,6 +20,11 @@ const WelcomeScreen = ({ onStart }) => {
             return;
         }
 
+        if (!/^[A-Za-z\s]+$/.test(userName.trim())) {
+            setError('Please enter a valid name (letters only)');
+            return;
+        }
+
         setError('');
         setShowNamePopup(false);
 
@@ -32,6 +37,13 @@ const WelcomeScreen = ({ onStart }) => {
         <div className="ghibli-card">
             {/* Background Image */}
             <div className="bg-burst"></div>
+
+            {/* Global Desktop Background */}
+            <img
+                src="./assets/images/background_characters.png"
+                alt="Background Characters"
+                className="absolute inset-0 w-full h-full object-cover object-center hidden sm:block z-0 opacity-40 scale-110 origin-top"
+            />
 
             {/* Content Container - Center aligned for impact */}
             <div className="ghibli-content justify-between sm:justify-start py-4 sm:py-0">
@@ -146,11 +158,7 @@ const WelcomeScreen = ({ onStart }) => {
                 <div className="relative w-full flex-1 hidden sm:flex items-center justify-center min-h-[350px] my-4 overflow-visible">
 
                     {/* background_characters.png - Desktop */}
-                    <img
-                        src="./assets/images/background_characters.png"
-                        alt="Background Characters"
-                        className="absolute inset-0 w-full h-full object-cover object-center scale-125 z-0 opacity-100 origin-center"
-                    />
+                    {/* background_characters.png - Desktop (Removed, using global background instead) */}
 
                     {/* Gold Coins - Scaled down */}
                     <img
@@ -169,7 +177,7 @@ const WelcomeScreen = ({ onStart }) => {
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.2, type: "spring" }}
-                        className="relative z-20 w-full max-w-[240px] sm:max-w-[260px] md:max-w-[290px] bg-white shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col items-center border-[4px] sm:border-[6px] border-[#34495E] overflow-hidden shrink-0 transform -translate-y-4"
+                        className="relative z-20 w-full max-w-[240px] sm:max-w-[320px] md:max-w-[380px] bg-white shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col items-center border-[4px] sm:border-[6px] border-[#34495E] overflow-hidden shrink-0 transform -translate-y-4"
                     >
                         {/* Clip Element */}
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 sm:w-16 h-4 sm:h-5 bg-[#E5533D] shadow-lg flex items-center justify-center border-b-2 sm:border-b-4 border-[#C0392B] z-30">
@@ -222,9 +230,8 @@ const WelcomeScreen = ({ onStart }) => {
                         onClick={handleStartClick}
                         className="btn-primary-3d w-full max-w-[240px] min-[375px]:max-w-[260px] sm:max-w-[340px] !py-3 sm:!py-5 !text-lg sm:!text-xl mt-1"
                     >
-                        START
+                        Check Now
                     </button>
-                    <p className="text-blue-200 font-bold uppercase tracking-[0.3em] mt-1 text-[7px] min-[375px]:text-[8px] sm:text-[10px]">Ready for a mission?</p>
                 </div>
             </div>
 

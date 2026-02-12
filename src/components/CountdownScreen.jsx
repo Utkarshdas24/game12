@@ -57,26 +57,26 @@ const CountdownScreen = ({ onComplete, userName = "User" }) => {
                             strokeDasharray={circumference}
                             initial={{ strokeDashoffset: 0 }}
                             animate={{ strokeDashoffset: -circumference }}
-                            transition={{ duration: 1, ease: "linear", repeat: count > 0 ? Infinity : 0 }}
+                            transition={{ duration: 1, ease: "linear", repeat: Infinity }}
                         />
                     </svg>
                 )}
 
                 {/* Center Number / Text */}
-                <div className="relative z-10 flex items-center justify-center text-center px-4">
-                    <AnimatePresence mode="popLayout">
+                <div className="relative z-10 flex items-center justify-center text-center px-4 w-[200px] h-[200px]">
+                    <AnimatePresence initial={false}>
                         {count > 0 ? (
                             <motion.div
                                 key={count}
-                                initial={{ scale: 0.5, opacity: 0, y: 50 }}
-                                animate={{ scale: 1, opacity: 1, y: 0 }}
-                                exit={{ scale: 1.5, opacity: 0, rotate: -20 }}
+                                initial={{ scale: 0.5, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 1.5, opacity: 0 }}
                                 transition={{
                                     type: "spring",
-                                    stiffness: 400,
-                                    damping: 15,
-                                    mass: 1
+                                    stiffness: 300,
+                                    damping: 20
                                 }}
+                                className="absolute inset-0 flex items-center justify-center"
                             >
                                 <span className="text-8xl sm:text-9xl font-black text-white drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] tracking-widest leading-none"
                                     style={{ textShadow: "4px 4px 0px #993D00" }}>
@@ -90,7 +90,7 @@ const CountdownScreen = ({ onComplete, userName = "User" }) => {
                                 animate={{ scale: 1, opacity: 1 }}
                                 exit={{ scale: 1.1, opacity: 0 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                className="max-w-md"
+                                className="absolute inset-0 flex items-center justify-center max-w-md"
                             >
                                 <h2 className="text-2xl sm:text-4xl font-black text-white drop-shadow-md leading-tight uppercase">
                                     <span className="text-[#FF8C00] drop-shadow-sm">{userName || "User"}'s</span> <br />

@@ -20,7 +20,11 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
 
     const validate = () => {
         const errs = {};
-        if (!formData.name.trim()) errs.name = "Name is required";
+        if (!formData.name.trim()) {
+            errs.name = "Name is required";
+        } else if (!/^[A-Za-z\s]+$/.test(formData.name.trim())) {
+            errs.name = "Invalid name (letters only)";
+        }
         if (!isValidPhone(formData.mobile)) errs.mobile = "Invalid Mobile Number";
         if (!formData.date) errs.date = "Preferred Date is required";
         if (!formData.time) errs.time = "Preferred Time is required";
@@ -126,7 +130,7 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
                             onClick={handleShare}
                             className="bg-gradient-to-r from-[#FF8C00] to-[#FF7000] hover:from-[#FF7000] hover:to-[#E65C00] text-white font-black py-2.5 px-8 shadow-[0_4px_0_#993D00] active:translate-y-1 active:shadow-none transition-all flex items-center gap-3 text-sm sm:text-base border-2 border-white/20 uppercase tracking-widest"
                         >
-                            <Share className="w-5 h-5" /> SHARE
+                            <Share2 className="w-5 h-5" /> SHARE
                         </button>
                     </motion.div>
                 </div>
@@ -139,7 +143,10 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
                     className="bg-white p-4 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-4 border-white/50 mb-3 shrink-0"
                 >
                     <p className="text-slate-600 text-[10px] sm:text-sm font-bold text-center mb-4 leading-relaxed">
-                        You can improve your preparedness score further. Our Relationship Manager will reach out shortly.
+                        {Math.round(score) <= 35 && "Attention! Connect with our Relationship Manager to get started."}
+                        {Math.round(score) >= 36 && Math.round(score) <= 74 && "Room to Improve! Reach out to our Relationship Manager to strengthen your plan."}
+                        {Math.round(score) >= 75 && Math.round(score) <= 99 && "On Track! Speak to our Relationship Manager to improve your score even further."}
+                        {Math.round(score) === 100 && "Perfect Score! Connect with our Relationship Manager to explore our products."}
                     </p>
 
                     {/* Call Action */}
@@ -221,6 +228,7 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
                                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Preferred Date</label>
                                     <Input
                                         type="date"
+                                        min={new Date().toISOString().split("T")[0]}
                                         value={formData.date} onChange={e => updateField('date', e.target.value)}
                                         className="bg-slate-50 h-11 border-2 border-slate-100 text-slate-800 placeholder:text-slate-300 focus-visible:ring-blue-100 text-xs font-bold px-4"
                                     />

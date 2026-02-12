@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { lifeGoals } from '../data/lifeGoals';
 import {
     GraduationCap, Palmtree, Castle, Gem, Check,
-    Rocket, Globe, Umbrella, Wallet, HeartPulse
+    Rocket, Globe, Car, Wallet, HeartPulse, HeartHandshake
 } from "lucide-react";
 
 const iconMap = {
@@ -12,10 +12,11 @@ const iconMap = {
     Castle,
     Gem,
     Globe,
-    Umbrella,
+    Car,
     Wallet,
     Rocket,
-    HeartPulse
+    HeartPulse,
+    HeartHandshake
 };
 
 const GoalSelectionScreen = ({ onProceed }) => {
@@ -79,8 +80,8 @@ const GoalSelectionScreen = ({ onProceed }) => {
                             <div
                                 key={num}
                                 className={`w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 border-4 sm:border-[6px] flex items-center justify-center font-black text-base sm:text-xl transition-all ${selectedGoals.length >= num
-                                        ? 'bg-white border-white text-[#0066B2] shadow-[0_5px_15px_rgba(255,255,255,0.3)] scale-110'
-                                        : 'bg-transparent border-white/30 text-white/50'
+                                    ? 'bg-white border-white text-[#0066B2] shadow-[0_5px_15px_rgba(255,255,255,0.3)] scale-110'
+                                    : 'bg-transparent border-white/30 text-white/50'
                                     }`}
                             >
                                 {selectedGoals.length >= num ? <Check className="w-5 sm:w-7 h-5 sm:h-7" strokeWidth={5} /> : num}
@@ -113,8 +114,8 @@ const GoalSelectionScreen = ({ onProceed }) => {
                                         transition={{ delay: index * 0.05 }}
                                         onClick={() => toggleGoal(goal.id)}
                                         className={`relative p-3 sm:p-5 border-2 sm:border-4 transition-all duration-300 ${isSelected
-                                                ? 'bg-[#0066B2] border-[#0066B2] shadow-xl scale-105'
-                                                : 'bg-slate-50 border-slate-100 hover:border-[#0066B2]/30 hover:shadow-lg hover:scale-[1.02]'
+                                            ? 'bg-[#0066B2] border-[#0066B2] shadow-xl scale-105'
+                                            : 'bg-slate-50 border-slate-100 hover:border-[#0066B2]/30 hover:shadow-lg hover:scale-[1.02]'
                                             }`}
                                     >
                                         {isSelected && (

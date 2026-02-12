@@ -70,12 +70,13 @@
     }
 
     /* PC / Tablet Optimization - Responsive to viewport height to avoid clipping */
+    /* PC / Tablet Optimization - Responsive to viewport height to avoid clipping */
     @media (min-width: 640px) {
         .ghibli-card {
             border-width: 8px;
-            max-width: 500px;
-            height: 94vh;
-            max-height: 800px;
+            max-width: 560px;
+            height: 98vh;
+            max-height: 950px;
             min-height: 550px;
             margin: auto;
         }
@@ -83,7 +84,7 @@
 
     @media (min-width: 1024px) {
         .ghibli-card {
-            max-width: 520px;
+            max-width: 600px;
         }
     }
 
