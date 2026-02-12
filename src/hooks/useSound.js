@@ -10,7 +10,7 @@ export const useSound = () => {
         if (!soundEnabled.current) return;
 
         try {
-            const audio = new Audio(`/sounds/${soundType}.wav`);
+            const audio = new Audio(`./sounds/${soundType}.wav`);
             audio.volume = 0.5;
 
             if (options.startTime) {

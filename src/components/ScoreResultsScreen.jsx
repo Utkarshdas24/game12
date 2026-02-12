@@ -50,10 +50,15 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
     };
 
     const handleShare = async () => {
+        // compute app base URL dynamically so share link works under any deployment subpath
+        const appBaseUrl = (typeof window !== 'undefined')
+            ? new URL(import.meta.env.BASE_URL || './', window.location.href).href
+            : '/';
+
         const shareData = {
             title: 'Bajaj Life Goals Quiz',
             text: 'Check your Life Goals readiness! Take the Bajaj Life Goals Quiz and discover how prepared you are for your future.',
-            url: 'https://game12-inky.vercel.app/'
+            url: appBaseUrl
         };
 
         if (navigator.share) {
@@ -65,7 +70,7 @@ const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
         } else {
             // Fallback
             try {
-                await navigator.clipboard.writeText(shareData.text);
+                await navigator.clipboard.writeText(shareData.url);
                 alert('Link copied to clipboard!');
             } catch (err) {
                 console.error('Failed to copy:', err);

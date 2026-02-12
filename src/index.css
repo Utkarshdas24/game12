@@ -150,7 +150,11 @@
 /* Background Utility */
 .bg-burst {
     @apply absolute inset-0 z-0 pointer-events-none bg-cover bg-center;
+<<<<<<< HEAD
     background-image: url('/assets/images/background_burst.png');
+=======
+    background-image: url('./assets/background_burst.png');
+>>>>>>> 9f2bd38cb807fdf3eef206a8ca034e8bf3e1becf
     opacity: 0.6;
     mix-blend-mode: overlay;
 }

@@ -76,7 +76,7 @@ const WelcomeScreen = ({ onStart }) => {
 
                     {/* background_characters.png - Mobile */}
                     <img
-                        src="/assets/images/background_characters.png"
+                        src="./assets/images/background_characters.png"
                         alt="Background Characters"
                         className="absolute inset-0 w-full h-full object-cover object-center scale-x-[1.1] scale-y-[1.1] min-[375px]:scale-x-[1.18] min-[375px]:scale-y-[1.2] z-0 opacity-100 origin-center"
                         style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)' }}
