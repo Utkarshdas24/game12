@@ -53,18 +53,24 @@ export const submitToLMS = async (data) => {
             },
             body: JSON.stringify(fullPayload)
         });
-        
-        // Handle opaque responses or JSON
-        let result = { success: true };
+
         try {
-            result = await response.json();
+            const responseData = await response.json();
+            return {
+                success: response.ok,
+                data: responseData,
+                error: response.ok ? null : (responseData?.message || `API error: ${response.status}`)
+            };
         } catch (e) {
-            // ignore JSON parse error if opaque
+            // If JSON parsing fails but response was OK, still return success
+            return {
+                success: response.ok,
+                error: response.ok ? null : `API error: ${response.status}`
+            };
         }
-        return result;
     } catch (error) {
         console.error("LMS Submission Error:", error);
-        // Return success true to allow flow to continue even if API fails (common in CORS constrained dev envs)
-        return { success: true };
+        // Returning success false to handle error in UI
+        return { success: false, error: error.message };
     }
 };

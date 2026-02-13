@@ -7,8 +7,8 @@ import { isValidPhone } from '../utils/helpers';
 import Speedometer from './Speedometer';
 import { submitToLMS } from '../utils/api';
 
-const ScoreResultsScreen = ({ score, userName, onBookSlot, onRestart }) => {
-    const [formData, setFormData] = useState({ name: userName || '', mobile: '', date: '', time: '' });
+const ScoreResultsScreen = ({ score, userName, userPhone, onBookSlot, onRestart }) => {
+    const [formData, setFormData] = useState({ name: userName || '', mobile: userPhone || '', date: '', time: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const [showBooking, setShowBooking] = useState(false);

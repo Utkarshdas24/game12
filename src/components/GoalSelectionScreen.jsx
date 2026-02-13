@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { lifeGoals } from '../data/lifeGoals';
 import {
-    GraduationCap, Palmtree, Castle, Gem, Check,
+    GraduationCap, Palmtree, Castle, Check,
     Rocket, Globe, Car, Wallet, HeartPulse, HeartHandshake
 } from "lucide-react";
 
@@ -10,7 +10,6 @@ const iconMap = {
     GraduationCap,
     Palmtree,
     Castle,
-    Gem,
     Globe,
     Car,
     Wallet,

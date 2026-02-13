@@ -77,12 +77,28 @@ export const getCongratulationsTitle = (percentage) => {
 export const playSound = (soundType) => {
     // This will be enhanced with actual audio files
     try {
-    const audio = new Audio(`./sounds/${soundType}.wav`);
+        const audio = new Audio(`./sounds/${soundType}.wav`);
         audio.volume = 0.5;
         audio.play().catch(err => {
-             // Sound play error
+            // Sound play error
         });
     } catch (error) {
         // Sound not available
     }
+};
+/**
+ * Format date for callback (tomorrow at 09:00 AM)
+ * Returns object with date string and time string
+ */
+export const formatCallbackDate = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    // Format: YYYY-MM-DD
+    const dateStr = tomorrow.toISOString().split('T')[0];
+
+    return {
+        date: dateStr,
+        time: "09:00 AM - 10:00 AM" // Using the format expected by the existing select slot
+    };
 };

@@ -20,12 +20,6 @@ export const lifeGoals = [
         description: "Own your dream house"
     },
     {
-        id: 4,
-        name: "Marriage Planning",
-        icon: "Gem",
-        description: "Plan for your special day"
-    },
-    {
         id: 5,
         name: "World Travel",
         icon: "Globe",

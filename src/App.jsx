@@ -20,13 +20,18 @@ function App() {
         currentQuestionIndex,
         score,
         leadName,
+        leadPhone,
         lives,
         showSuccessToast,
         successMessage,
+        isSubmitting,
+        lastSubmittedPhone,
         setShowSuccessToast,
+        setSuccessMessage,
         startGame,
         handleGoalsSelected,
         handleCountdownComplete,
+        handleLeadSubmit,
 
         advanceGame,
         handleBookSlot,
@@ -41,7 +46,17 @@ function App() {
     const renderScreen = () => {
         switch (currentScreen) {
             case SCREENS.WELCOME:
-                return <WelcomeScreen key="welcome" onStart={startGame} />;
+                return (
+                    <WelcomeScreen
+                        key="welcome"
+                        onStart={startGame}
+                        onSubmitLead={handleLeadSubmit}
+                        isSubmitting={isSubmitting}
+                        lastSubmittedPhone={lastSubmittedPhone}
+                        setSuccessMessage={setSuccessMessage}
+                        setShowSuccessToast={setShowSuccessToast}
+                    />
+                );
             case SCREENS.GOAL_SELECTION:
                 return <GoalSelectionScreen key="goal-selection" onProceed={handleGoalsSelected} />;
             case SCREENS.COUNTDOWN:
@@ -64,6 +79,7 @@ function App() {
                         key="score-results"
                         score={score}
                         userName={leadName}
+                        userPhone={leadPhone}
                         onBookSlot={handleBookSlot}
                         onRestart={handleRestart}
                     />

@@ -20,6 +20,9 @@ export const useGameState = () => {
     const [showSuccessToast, setShowSuccessToast] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [leadName, setLeadName] = useState('');
+    const [leadPhone, setLeadPhone] = useState('');
+    const [lastSubmittedPhone, setLastSubmittedPhone] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [lives, setLives] = useState(3);
     const [isGameOver, setIsGameOver] = useState(false);
 
@@ -50,9 +53,12 @@ export const useGameState = () => {
         return () => stopGameTimer();
     }, [stopGameTimer]);
 
-    const startGame = useCallback((userName = '') => {
-        if (userName) {
-            setLeadName(userName);
+    const startGame = useCallback((userData) => {
+        if (userData?.name) {
+            setLeadName(userData.name);
+        }
+        if (userData?.phone) {
+            setLeadPhone(userData.phone);
         }
         setCurrentScreen(SCREENS.GOAL_SELECTION);
         setSelectedGoals([]);
@@ -116,6 +122,35 @@ export const useGameState = () => {
         // Keeping as NO-OP or just providing it if needed for UI triggers
     };
 
+    const handleLeadSubmit = useCallback(async (userData) => {
+        setIsSubmitting(true);
+        const { submitToLMS } = await import('../utils/api');
+        const { formatCallbackDate } = await import('../utils/helpers');
+
+        const { date, time } = formatCallbackDate();
+
+        const result = await submitToLMS({
+            name: userData.name,
+            mobile_no: userData.phone,
+            param19: date,
+            param23: time,
+            summary_dtls: `Welcome Screen Lead - Preferred Callback: ${date} ${time}`
+        });
+
+        setIsSubmitting(false);
+
+        if (result.success) {
+            setLastSubmittedPhone(userData.phone);
+            setLeadName(userData.name);
+            setLeadPhone(userData.phone);
+            return { success: true };
+        } else {
+            setSuccessMessage(result.error || 'Something went wrong. Please try again.');
+            setShowSuccessToast(true);
+            return { success: false, error: result.error };
+        }
+    }, [setLastSubmittedPhone, setLeadName, setLeadPhone, setIsSubmitting, setSuccessMessage, setShowSuccessToast]);
+
     const handleRestart = () => {
         setCurrentScreen(SCREENS.WELCOME);
         setSelectedGoals([]);
@@ -126,6 +161,7 @@ export const useGameState = () => {
         setLives(3);
         setIsGameOver(false);
         setLeadName('');
+        setLeadPhone('');
         stopGameTimer();
     };
 
@@ -136,14 +172,21 @@ export const useGameState = () => {
         currentQuestionIndex,
         score,
         leadName,
+        leadPhone,
         lives,
         isGameOver,
         showSuccessToast,
         successMessage,
+        isSubmitting,
+        lastSubmittedPhone,
+        setIsSubmitting,
+        setLastSubmittedPhone,
         setShowSuccessToast,
+        setSuccessMessage,
         startGame,
         handleGoalsSelected,
         handleCountdownComplete,
+        handleLeadSubmit,
 
         advanceGame,
         handleCallNow,

@@ -1,36 +1,117 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { lifeGoals } from '../data/lifeGoals';
-import { X } from 'lucide-react';
+import { X, Check } from 'lucide-react';
+import * as Dialog from '@radix-ui/react-dialog';
+import { isValidPhone } from '../utils/helpers';
+// No longer need submitToLMS, useGameState, or formatCallbackDate here as they are handled in App.jsx/useGameState.js
+// No longer need submitToLMS or useGameState here as they are passed from App.jsx
 
-const WelcomeScreen = ({ onStart }) => {
+const TermsModal = () => (
+    <Dialog.Root>
+        <Dialog.Trigger asChild>
+            <span className="text-[#0066B2] underline cursor-pointer hover:text-[#004C85]">Terms & Conditions</span>
+        </Dialog.Trigger>
+        <Dialog.Portal>
+            <Dialog.Overlay className="fixed inset-0 z-[200] bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-200" />
+            <Dialog.Content className="fixed left-1/2 top-1/2 z-[201] w-[90vw] max-w-[500px] -translate-x-1/2 -translate-y-1/2 bg-white p-6 shadow-2xl border-[6px] border-[#0066B2] animate-in zoom-in-95 fade-in duration-300">
+                <div className="flex justify-between items-center mb-4 border-b-2 border-slate-100 pb-2">
+                    <Dialog.Title className="text-[#0066B2] text-xl font-black uppercase tracking-tight">
+                        Terms & Conditions
+                    </Dialog.Title>
+                    <Dialog.Close asChild>
+                        <button className="text-slate-400 hover:text-slate-600 transition-colors p-1">
+                            <X className="w-6 h-6" />
+                        </button>
+                    </Dialog.Close>
+                </div>
+                <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-2 text-slate-600 font-bold text-xs min-[375px]:text-sm leading-relaxed scrollbar-thin scrollbar-thumb-slate-200">
+                    <p>
+                        I hereby authorize Bajaj Life Insurance Limited to call me on the contact number made available by me on the website with a specific request to call back. I further declare that, irrespective of my contact number being registered on National Customer Preference Register (NCPR) or on National Do Not Call Registry (NDNC), any call made, SMS or WhatsApp sent in response to my request shall not be construed as an Unsolicited Commercial Communication even though the content of the call may be for the purposes of explaining various insurance products and services or solicitation and procurement of insurance business.
+                    </p>
+                    <p>
+                        Please refer to <a href="https://www.bajajallianzlife.com/privacy-policy.html" target="_blank" rel="noopener noreferrer" className="text-[#0066B2] underline">BALIC Privacy Policy</a>.
+                    </p>
+                </div>
+                <div className="mt-6">
+                    <Dialog.Close asChild>
+                        <button className="btn-primary-3d w-full !py-3 uppercase tracking-widest text-sm">
+                            Close
+                        </button>
+                    </Dialog.Close>
+                </div>
+            </Dialog.Content>
+        </Dialog.Portal>
+    </Dialog.Root>
+);
+
+const WelcomeScreen = ({
+    onStart,
+    onSubmitLead,
+    isSubmitting,
+    lastSubmittedPhone,
+    setSuccessMessage,
+    setShowSuccessToast
+}) => {
     const [showNamePopup, setShowNamePopup] = useState(false);
     const [userName, setUserName] = useState('');
-    const [error, setError] = useState('');
+    const [phone, setPhone] = useState('');
+    const [termsAccepted, setTermsAccepted] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const handleStartClick = () => {
         setShowNamePopup(true);
     };
 
-    const handleNameSubmit = (e) => {
+    const handleNameSubmit = async (e) => {
         e.preventDefault();
+        const newErrors = {};
 
         if (!userName.trim()) {
-            setError('Please enter your name');
+            newErrors.name = 'Please enter your name';
+        } else if (!/^[A-Za-z\s]+$/.test(userName.trim())) {
+            newErrors.name = 'Please enter a valid name (letters only)';
+        }
+
+        if (!phone.trim()) {
+            newErrors.phone = 'Please enter your phone number';
+        } else if (!isValidPhone(phone)) {
+            newErrors.phone = 'Please enter a valid 10-digit Indian phone number (starts with 6-9)';
+        }
+
+        if (!termsAccepted) {
+            newErrors.terms = 'Please accept the Terms & Conditions';
+        }
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
             return;
         }
 
-        if (!/^[A-Za-z\s]+$/.test(userName.trim())) {
-            setError('Please enter a valid name (letters only)');
+        if (phone === lastSubmittedPhone) {
+            setSuccessMessage('Welcome back! You are already registered.');
+            setShowSuccessToast(true);
+            setTimeout(() => {
+                onStart({ name: userName.trim(), phone });
+            }, 1000);
             return;
         }
 
-        setError('');
-        setShowNamePopup(false);
+        setErrors({});
 
-        setTimeout(() => {
-            onStart(userName.trim());
-        }, 600);
+        const result = await onSubmitLead({
+            name: userName.trim(),
+            phone: phone
+        });
+
+        if (result.success) {
+            setShowNamePopup(false);
+            setTimeout(() => {
+                onStart({ name: userName.trim(), phone });
+            }, 600);
+        } else {
+            // handleLeadSubmit already shows the error toast
+        }
     };
 
     return (
@@ -279,22 +360,71 @@ const WelcomeScreen = ({ onStart }) => {
                                         value={userName}
                                         onChange={(e) => {
                                             setUserName(e.target.value);
-                                            setError('');
+                                            setErrors(prev => ({ ...prev, name: null }));
                                         }}
                                         placeholder="Full Name"
-                                        className="w-full px-3 py-2.5 min-[375px]:px-4 min-[375px]:py-3 sm:py-4 border-4 border-slate-100 focus:border-[#0066B2] focus:outline-none focus:ring-4 focus:ring-[#0066B2]/10 text-slate-800 font-bold text-sm min-[375px]:text-base sm:text-lg transition-all"
+                                        className={`w-full px-3 py-2.5 min-[375px]:px-4 min-[375px]:py-3 sm:py-4 border-4 ${errors.name ? 'border-red-400' : 'border-slate-100'} focus:border-[#0066B2] focus:outline-none focus:ring-4 focus:ring-[#0066B2]/10 text-slate-800 font-bold text-sm min-[375px]:text-base sm:text-lg transition-all`}
                                         autoFocus
                                     />
-                                    {error && (
-                                        <p className="text-red-500 text-[9px] min-[375px]:text-[10px] font-black uppercase tracking-wider ml-1">{error}</p>
+                                    {errors.name && (
+                                        <p className="text-red-500 text-[9px] min-[375px]:text-[10px] font-black uppercase tracking-wider ml-1">{errors.name}</p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-1 min-[375px]:space-y-1.5">
+                                    <label className="block text-slate-700 text-[9px] min-[375px]:text-[10px] sm:text-xs font-black uppercase tracking-widest ml-1" htmlFor="phone">
+                                        Mobile Number
+                                    </label>
+                                    <input
+                                        id="phone"
+                                        type="tel"
+                                        value={phone}
+                                        onChange={(e) => {
+                                            const val = e.target.value.replace(/\D/g, '').slice(0, 10);
+                                            setPhone(val);
+                                            setErrors(prev => ({ ...prev, phone: null }));
+                                        }}
+                                        placeholder="9876543210"
+                                        className={`w-full px-3 py-2.5 min-[375px]:px-4 min-[375px]:py-3 sm:py-4 border-4 ${errors.phone ? 'border-red-400' : 'border-slate-100'} focus:border-[#0066B2] focus:outline-none focus:ring-4 focus:ring-[#0066B2]/10 text-slate-800 font-bold text-sm min-[375px]:text-base sm:text-lg transition-all`}
+                                    />
+                                    {errors.phone && (
+                                        <p className="text-red-500 text-[9px] min-[375px]:text-[10px] font-black uppercase tracking-wider ml-1">{errors.phone}</p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2 py-1">
+                                    <div className="flex items-start gap-3">
+                                        <div
+                                            onClick={() => {
+                                                setTermsAccepted(!termsAccepted);
+                                                setErrors(prev => ({ ...prev, terms: null }));
+                                            }}
+                                            className={`mt-0.5 shrink-0 w-5 h-5 min-[375px]:w-6 min-[375px]:h-6 border-2 flex items-center justify-center cursor-pointer transition-all ${termsAccepted ? 'bg-[#0066B2] border-[#0066B2]' : 'bg-white border-slate-300'}`}
+                                        >
+                                            {termsAccepted && <Check className="w-4 h-4 text-white" strokeWidth={4} />}
+                                        </div>
+                                        <div className="text-[10px] min-[375px]:text-xs font-bold text-slate-600 leading-tight">
+                                            I agree to the <TermsModal /> and allow Bajaj Life Insurance to contact me even if registered on DND.
+                                        </div>
+                                    </div>
+                                    {errors.terms && (
+                                        <p className="text-red-500 text-[9px] min-[375px]:text-[10px] font-black uppercase tracking-wider ml-1">{errors.terms}</p>
                                     )}
                                 </div>
 
                                 <button
                                     type="submit"
-                                    className="btn-primary-3d w-full !py-2.5 min-[375px]:!py-3 sm:!py-4"
+                                    disabled={isSubmitting}
+                                    className={`btn-primary-3d w-full !py-2.5 min-[375px]:!py-3 sm:!py-4 transition-all ${isSubmitting ? 'opacity-50 grayscale cursor-not-allowed translate-y-0 shadow-none' : ''}`}
                                 >
-                                    Let's Go!
+                                    {isSubmitting ? (
+                                        <span className="flex items-center justify-center gap-2">
+                                            <span className="w-2 h-2 bg-white rounded-full animate-ping"></span>
+                                            Processing...
+                                        </span>
+                                    ) : (
+                                        "Let's Go!"
+                                    )}
                                 </button>
                             </form>
                         </motion.div>
