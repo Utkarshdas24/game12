@@ -6,6 +6,7 @@ import {
   GameManifestEntry,
 } from '../../core/services/federation.service';
 import { SecurityService } from '../../core/services/security.service';
+import { GamificationStoreService } from '../../core/services/gamification-store.service';
 
 @Component({
   selector: 'app-lobby',
@@ -507,6 +508,7 @@ export class LobbyComponent implements OnInit {
   constructor(
     private federationService: FederationService,
     private securityService: SecurityService,
+    private store: GamificationStoreService,
     private route: ActivatedRoute,
     private router: Router,
   ) {}
@@ -573,6 +575,21 @@ export class LobbyComponent implements OnInit {
   }
 
   playGame(gameId: string) {
+    // ── Create a Guest session so the AuthGuard allows access ──
+    const manifest = this.federationService.getGameManifest(gameId);
+    if (manifest) {
+      this.store.setState(
+        { id: 'GUEST_USER', name: 'Guest', region: 'Local' },
+        {
+          id: gameId,
+          desc: manifest.displayName,
+          url: this.federationService.getGameUrl(gameId) || '',
+          thumbnail: '',
+        },
+        'GUEST_SESSION',
+      );
+    }
+
     this.router.navigate(['/play', gameId]);
   }
 }

@@ -94,7 +94,15 @@ export class GamificationStoreService {
     return this.getSnapshot()?.gameDetails ?? null;
   }
 
-  /** Get the constructed game iframe URL: {gameUrl}/{salesPersonId}/{gameId} */
+  /**
+   * Get the constructed game iframe URL.
+   *
+   * For local monolithic games (localhost/assets), we MUST use query parameters
+   * because static file servers don't support path parameters on subfolders
+   * (causes 404 or recursion).
+   *
+   * For remote URLs, we use the requested path parameter format.
+   */
   getConstructedGameUrl(): string | null {
     const state = this.getSnapshot();
     if (!state) return null;
@@ -102,9 +110,21 @@ export class GamificationStoreService {
     const { salesPerson, gameDetails } = state;
     if (!gameDetails.url || !salesPerson.id || !gameDetails.id) return null;
 
-    // Build: {gameUrl}/{salesPersonId}/{gameId}
+    const isLocal =
+      gameDetails.url.includes('localhost') ||
+      gameDetails.url.includes('/assets/games');
     const baseUrl = gameDetails.url.replace(/\/$/, '');
-    return `${baseUrl}/${salesPerson.id}/${gameDetails.id}`;
+
+    if (isLocal) {
+      // Local static files need index.html + query params to avoid 404 recursion
+      const path = baseUrl.endsWith('index.html')
+        ? baseUrl
+        : `${baseUrl}/index.html`;
+      return `${path}?salesPersonId=${encodeURIComponent(salesPerson.id)}&gameId=${encodeURIComponent(gameDetails.id)}`;
+    } else {
+      // Remote apps handle path parameters as requested
+      return `${baseUrl}/${encodeURIComponent(salesPerson.id)}/${encodeURIComponent(gameDetails.id)}`;
+    }
   }
 
   /** Clear the store (logout / session end) */
