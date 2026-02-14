@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { AuthComponent } from './features/game-dispatcher/auth.component';
 import { LobbyComponent } from './features/game-dispatcher/lobby.component';
 import { GameWrapperComponent } from './shared/components/game-wrapper/game-wrapper.component';
 import { ErrorFallbackComponent } from './shared/components/error-fallback/error-fallback.component';
+import { SessionExpiredComponent } from './shared/components/session-expired/session-expired.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
@@ -11,13 +11,13 @@ export const routes: Routes = [
     component: LobbyComponent,
   },
   {
-    path: 'auth',
-    component: AuthComponent,
-  },
-  {
     path: 'play/:gameId',
     component: GameWrapperComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'session-expired',
+    component: SessionExpiredComponent,
   },
   {
     path: 'error',

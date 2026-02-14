@@ -5,14 +5,14 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
-import { SecurityService } from '../services/security.service';
+import { GamificationStoreService } from '../services/gamification-store.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private securityService: SecurityService,
+    private store: GamificationStoreService,
     private router: Router,
   ) {}
 
@@ -20,8 +20,15 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): boolean {
-    // For now, we'll allow access since the auth flow happens via the auth component
-    // In a real scenario, you might want to check if user has valid session
-    return true;
+    if (this.store.hasValidState()) {
+      console.log('[AuthGuard] Access granted — valid session exists');
+      return true;
+    }
+
+    console.warn(
+      '[AuthGuard] Access denied — no valid session, redirecting to /session-expired',
+    );
+    this.router.navigate(['/session-expired'], { replaceUrl: true });
+    return false;
   }
 }

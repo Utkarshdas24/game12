@@ -1,16 +1,16 @@
 export const environment = {
-  production: true,
-  envName: 'prod',
+  production: false,
+  envName: 'uat',
 
   // ── API Endpoints ──
-  apiBaseUrl: 'https://api.marketingassist.com',
+  apiBaseUrl: 'https://uat-api.marketingassist.com',
   gameBaseUrl: 'https://balicuat.bajajlifeinsurance.com/gamification',
 
   // ── Manifest ──
   manifestUrl:
     'https://balicuat.bajajlifeinsurance.com/gamification/federation.manifest.json',
 
-  // ── Games (fallback paths for manifest-less mode) ──
+  // ── Games (UAT paths) ──
   games: {
     'scramble-words': {
       path: '/scramble-words',
