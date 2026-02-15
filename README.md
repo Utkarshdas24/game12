@@ -118,7 +118,7 @@ game12/
 │   ├── main.jsx         # Application entry point
 │   └── index.css        # Global styles and Tailwind config
 ├── index.html           # HTML template
-├── vite.config.js       # Vite configuration
+├── vite.config.js       # Vite configuration![alt text](image.png)
 ├── tailwind.config.js   # Tailwind CSS configuration
 ├── postcss.config.js    # PostCSS configuration
 └── package.json         # Dependencies and scripts
