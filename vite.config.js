@@ -8,6 +8,16 @@ export default defineConfig({
     base: './',
     plugins: [react()],
     build: {
-        outDir: 'dist/game1'
+        outDir: 'dist',
+        rollupOptions: {
+            output: {
+                name: 'LifeGoalsGame',
+                exports: 'named',
+                format: 'es'
+            }
+        }
+    },
+    server: {
+        port: 5002 // Development port
     }
 })
